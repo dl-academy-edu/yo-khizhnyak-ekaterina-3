@@ -1,0 +1,17 @@
+.header {
+    margin-top: 33px;
+    border-bottom: 1px solid;
+    &__nav {
+        display: flex;
+        justify-content: space-between;
+    }
+    &__list {
+        display: flex;
+        flex-direction: row;
+        gap: 20px;
+    }
+    &__button {
+        border: none;
+        background: transparent;
+    } 
+}

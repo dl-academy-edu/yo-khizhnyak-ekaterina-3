@@ -17,45 +17,45 @@ console.log(isNumber(number))
 
 // 2 задача
 
-let n = +prompt('Введите число', '');
+let userNumber = +prompt('Введите число', '');
 
-function factorial(n) {
+function factorial(userNumber) {
     
-    if (isNaN(n)) {
+    if (isNaN(userNumber)) {
         return "Ошибка";
     }
 
     let result = 1;
     let i = 0;
-    while (i<n) {
+    while (i < userNumber) {
         result *= i + 1;
         i++;
     }
     return result;
 }
 
-console.log(factorial(n))
+console.log(factorial(userNumber))
 
 // 3 задача
 
-let num = +prompt('Введите число', '');
-let s = +prompt('Введите степень числа', '');
+let userNum = +prompt('Введите число', '');
+let degree = +prompt('Введите степень числа', '');
 
-function power(s,num) {
+function power(degree, userNum) {
 
-    if (isNaN(s,num)) {
+    if (isNaN(degree, userNum)) {
         return "Ошибка";
     }
 
     let result = 1;
 
 for (let i = 0; i<s; i++ ) {
-    result *= num;
+    result *= userNum;
 }
 return result;
 }
 
-console.log(power(s,num))
+console.log(power(degree, userNum))
 
 // 5 задача
 
