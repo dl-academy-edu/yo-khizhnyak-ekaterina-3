@@ -1,10 +1,115 @@
-/*
-  Код ниже нужно удалить, он добавлен просто для примера
-*/
 .footer {
-  background-color: #151515;
-  color: #fff;
-  padding: 40px 0;
-  text-align: center;
-  height: 100px;
+  padding: 60px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  @media (max-width: $media-mobile) {
+    padding: 40px 0;
+  }
+  &__grey {
+    background-color: #F6F6F6;
+  }
+  &__title {
+    font-family: 'Gilroy';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 34px;
+    line-height: 41px;
+    text-align: center;
+    color: #070707;
+    padding-bottom: 20px;
+    @media (max-width: $media-mobile) {
+      padding-bottom: 10px;
+    }
+  }
+  &__text {
+    font-family: 'Gilroy';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 21px;
+    text-align: center;
+    color: #070707;
+  }
+  &__button {
+    font-family: 'Gilroy';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 22px;
+    text-align: center;
+    color: #FFFFFF;
+    background: #070707;
+    border-radius: 30px;
+    padding: 8px 29px;
+    align-items: center;
+    margin-top: 32px;
+    cursor: pointer;
+    transition: 0.4s;
+    &:hover, &:focus {
+      color: #070707;
+      background-color: #FFFFFF;
+    }
+    @media (max-width: $media-mobile) {
+      margin-top: 40px;
+    }
+  }
+  &__list {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items:center;
+    gap: 12px;
+    margin-top: 50px;
+    margin-bottom: 34px;
+    max-width: 356px;
+    @media (max-width: $media-mobile) {
+      margin-top: 40px;
+      max-width: 201px;
+    }
+  }
+  &__item {
+    margin-bottom: 17px;
+  }
+  &__link {
+    font-family: 'Gilroy';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 22px;
+    text-align: center;
+    color: #070707;
+    border: 2.5px solid #070707;
+    border-radius: 30px;
+    align-items: center;
+    padding: 8px 17px;
+    transition: 0.4s;
+    &:hover, &:focus {
+      color: #FFFFFF;
+      background-color: #070707;
+    }
+    &:disabled {
+      color: #E5E5E5;
+      border: #E5E5E5;
+    }
+  }
+  &__info {
+    font-family: 'Gilroy';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 16px;
+    text-align: center;
+    color: #828282;
+    padding-bottom: 5px;
+  }
+  &__dlAcademy {
+    border-bottom: 1px dashed #828282;
+    transition: 0.4s;
+    &:hover, &:focus {
+      color: #070707;
+      border-bottom: 1px solid #070707;
+    }
+  }
 }

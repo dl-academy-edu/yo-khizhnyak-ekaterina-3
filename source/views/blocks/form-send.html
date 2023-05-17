@@ -1,0 +1,31 @@
+<form class="send" name="send" method="post" action="#" novalidate>
+    <div class="send__two-input">
+      <div class="send__wrapper">
+        <label class="send__label" for="userName">What is your name? <span class="send__star">*</span></label>
+        <input class="send__input send__input_js" type="text" name="name" id="userName" required>
+      </div>
+      <div class="send__wrapper">
+        <label class="send__label" for="subject">Message subject <span class="send__star">*</span></label>
+        <input class="send__input" type="text" name="subjectMessage" id="subject" required>
+      </div>
+    </div>
+    <div class="send__two-input">
+        <div class="send__wrapper">
+            <label class="send__label" for="email3">Your Email <span class="send__star">*</span></label>
+            <input class="send__input" type="email" name="email" id="email3" required>
+        </div> 
+        <div class="send__wrapper">
+            <label class="send__label" for="phone">Your mobile phone <span class="send__star">*</span></label>
+            <input class="send__input" type="tel" name="phone" id="phone" required>
+          </div>
+    </div>
+    <div>
+        <label class="send__label" for="message2">What do you want to discuss with me?</label>
+        <textarea class="send__area" name="message" id="message2" cols="30" rows="10"></textarea>
+      </div>
+    <div class="send__checkbox">
+      <input class="send__checkbox--input" type="checkbox" name="checkbox" id="checkbox2" @@checked>
+      <label class="send__checkbox--text" for="checkbox2">Clicking on the button, you consent to the processing of your personal data.</label>
+    </div>  
+    <button class="send__button" type="submit" disabled>Send</button>  
+  </form>

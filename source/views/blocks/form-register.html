@@ -1,0 +1,43 @@
+    <form class="register" name="register" method="post" action="#" novalidate>
+      <div class="register__wrapper">
+          <label class="register__label" for="userEmail">Email <span class="register__star">*</span></label>
+          <input class="register__input register__input--email" type="email" name="email" id="userEmail" required>
+        </div> 
+      <div class="register__two-input">
+        <div class="register__wrapper">
+          <label class="register__label" for="name">Name <span class="register__star">*</span></label>
+          <input class="register__input" type="text" name="name" id="name" required>
+        </div>
+        <div class="register__wrapper">
+          <label class="register__label" for="surname">Surname <span class="register__star">*</span></label>
+          <input class="register__input" type="text" name="surname" id="surname" required>
+        </div>
+      </div>
+      <div class="register__two-input">
+        <div class="register__wrapper">
+          <label class="register__label" for="password">Password <span class="register__star">*</span></label>
+          <input class="register__input" type="password" name="password" id="password" minlength="4" maxlength="8" size="8" required>
+        </div>
+        <div class="register__wrapper">
+          <label class="register__label" for="repeatPassword">Repeat password <span class="register__star">*</span></label>
+          <input class="register__input" type="password" name="repeatPassword" id="repeatPassword" minlength="4" maxlength="8" size="8" required>
+        </div>
+      </div>
+      <div class="register__two-input">
+        <div class="register__wrapper">
+          <label class="register__label" for="location">Location <span class="register__star">*</span></label>
+          <input class="register__input" type="text" name="location" id="location" required>
+        </div>
+        <div class="register__wrapper">
+          <label class="register__label" for="age">Age <span class="register__star">*</span></label>
+          <input class="register__input" type="number" name="age" id="age" required>
+        </div>
+      </div>
+      <div class="register__checkbox">
+        <input class="register__checkbox--input" type="checkbox" name="checkbox" id="checkbox" @@checked>
+        <label class="register__checkbox--text" for="checkbox">Clicking on the button, you consent to the processing of your personal data.</label>
+      </div>  
+      <button class="register__button" type="submit" disabled>Sign up</button>  
+    </form>
+
+  

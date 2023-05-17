@@ -1,0 +1,104 @@
+.sign {
+    max-width: 370px;
+    height: auto;
+    background-color: #ffffff;
+    padding: 40px;
+    border: 2.5px solid #070707;
+    z-index: 300;
+    @media (max-width: $media-mobile) {
+      border: none;
+      padding: 20px;
+    }
+    &__wrapper {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 20px;
+    }
+    &__label {
+      font-family: 'Gilroy', sans-serif;
+      font-style: normal;
+      font-weight: 500;
+      font-size: 14px;
+      line-height: 16px;
+      color: #070707;
+      margin-bottom: 6px;
+    }
+    &__star {
+      color: #EB3617;
+    }
+    &__input {
+      width: 290px;
+      height: 50px;
+      border: 2.5px solid #E5E5E5;
+      @media (max-width: $media-mobile) {
+        width: 280px;
+      }
+      &:hover {
+        border: 2.5px solid #828282;
+      }
+      &:focus {
+        border: 2.5px solid #070707;
+      }
+      &.is-invalid {
+        border: 2.5px solid #EB3617;
+      }
+      &.is-valid {
+        border: 2.5px solid #03BC3C;;
+      }
+    }
+    &__input--email {
+      width: 290px;
+      height: 50px;
+      border: 2.5px solid #E5E5E5;
+      @media (max-width: $media-mobile) {
+        width: 280px;
+      }
+      &:hover {
+        border: 2.5px solid #828282;
+      }
+      &:focus {
+        border: 2.5px solid #070707;
+      }
+      &.is-invalid {
+        border: 2.5px solid #EB3617;
+      }
+      &.is-valid {
+        border: 2.5px solid #03BC3C;;
+      }
+    }
+      &__button {
+        font-family: 'Gilroy', sans-serif;
+        font-style: normal;
+        font-weight: 700;
+        font-size: 18px;
+        line-height: 22px;
+        text-align: center;
+        color: #070707;
+        background-color: #ffffff;
+        padding: 8px 17px;
+        border: 2.5px solid #070707;
+        border-radius: 30px;
+        cursor: pointer;
+        transition: 0.4s;
+        &:active {
+          color: #070707;
+          border: 2.5px solid #070707;
+        }
+        // &:disabled {
+        //   color: #E5E5E5;
+        //   border: 2.5px solid #E5E5E5;
+        // }
+      }
+    }
+
+.success-feedback {
+  color: #03BC3C;
+  font-size: 14px;
+  line-height: 16px;
+  }
+    
+.invalid-feedback{
+  color: #EB3617;
+  font-size: 14px;
+  line-height: 16px;
+  }

@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <meta name="google" content="notranslate">
+    <meta name="format-detection" content="telephone=no">
+
+    <title>DL Academy</title>
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+
+    <script>
+      var docElement = document.documentElement;
+      docElement.className = docElement.className.replace(/\bno-js\b/, '') + ' js';
+    </script>
+
+    <!-- Favicon -->
+
+    <!-- build:css -->
+    <link href="css/style.min.css" rel="stylesheet">
+    <!-- endbuild -->
+  </head>
+  <body>
+    @@include('blocks/header-profile.html')
+    <main>      
+      @@include('blocks/burger-menu.html')
+      <section class="myProfile container">
+        <div class="myProfile__main">
+          <h1 class="myProfile__title">My profile</h1>
+          <button class="burger__menu"></button>
+          <div class="myProfile__img"></div>
+        </div>
+        <div class="myProfile__list">
+          <p class="myProfile__item">Name: <span class="myProfile__data">Ekaterina</span></p>
+          <p class="myProfile__item">Surname: <span class="myProfile__data">Khizhnyak</span></p>
+          <p class="myProfile__item">Email: <span class="myProfile__data">ekaterina_khizhnyak@mail.ru</span></p>
+          <p class="myProfile__item">Password: **********</p>
+          <p class="myProfile__item">Location: <span class="myProfile__data">Tolyatti</span></p>
+          <p class="myProfile__item">Age: <span class="myProfile__data">33</span></p>
+          <ul>
+            <li><button class="myProfile__button password-btn_js" type="submit">Change password</button></li>
+            <li><button class="myProfile__button data-btn_js" type="submit">Change other data</button></li>
+            <li><button class="myProfile__button" type="submit">Delete account</button></li>
+          </ul>
+        </div>
+      </section>
+    </main>
+
+    <div class="popup popup-password_js">
+      <div class="overlay overlay-password_js"></div>
+      <div class="modal__wrap modal__wrap-password_js">
+        @@include('blocks/form-password.html')
+        <button class="modal__close modal__close-password_js" type="button"></button>
+      </div>
+    </div>
+
+    <div class="popup popup-data_js">
+      <div class="overlay overlay-data_js"></div>
+      <div class="modal__wrap modal__wrap-data_js">
+        @@include('blocks/form-data.html')
+        <button class="modal__close modal__close-data_js" type="button"></button>
+      </div>
+    </div>
+
+    <script src="./js/common.js"></script>
+    <script src="./js/profile.js"></script>
+    <script src="./js/burger.js"></script>
+    <script src="./js/fixed-btn.js"></script>
+  </body>

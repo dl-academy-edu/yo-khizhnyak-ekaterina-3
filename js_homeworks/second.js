@@ -7,8 +7,8 @@ function isNumber (number) {
         return "Ошибка";
     }
 
-for (let i = 0; i <= number; i++) {
-    if (i % 4 === 0) continue;
+    for (let i = 0; i <= number; i++) {
+        if (i % 4 === 0) continue;
     console.log(i);
 }
 }
@@ -48,11 +48,10 @@ function power(degree, userNum) {
     }
 
     let result = 1;
-
-for (let i = 0; i<s; i++ ) {
-    result *= userNum;
-}
-return result;
+    for (let i = 0; i<s; i++ ) {
+        result *= userNum;
+    }
+    return result;
 }
 
 console.log(power(degree, userNum))

@@ -37,22 +37,4 @@
         gap: 20px;
         padding-right: 3px;
     }
-    &__list-hidden {
-        display: none;
-    }
-    &__button {
-        @include no-btn;
-        font-family: 'Gilroy';
-        font-style: normal;
-        font-weight: 700;
-        font-size: 18px;
-        line-height: 22px;
-        color: #828282;
-        transition: 0.4s;
-        cursor: pointer;
-    } 
-    &__button:hover, &__button:focus, &__link:hover, &__link:focus {
-        color: #070707;
-    }
-
 }
