@@ -1,11 +1,20 @@
 <section class="burger">
     <div class="burger__wrapper">
       <button class="burger__close"></button>
-      <ul class="burger__list">
-        <li><a class="burger__link" href="">Home</a></li>
-        <li><a class="burger__link" href="profile.html">My blog</a></li>
+      
+      <ul class="burger__list burger__list_js">
+        <li><a class="burger__link burger__link-home_js" href="/">Home</a></li>
+        <li><a class="burger__link burger__link-blog_js" href="blog.html">My blog</a></li>
         <li><button class="burger__button burger-sign_js">Sign in</button></li>
         <li><button class="burger__button burger-register_js">Register</button></li>
       </ul>
+
+      <ul class="burger__list burger__list-sign burger__list-sign_js hidden">
+        <li><a class="burger__link burger__link-home_js" href="/">Home</a></li>
+        <li><a class="burger__link burger__link-blog_js" href="blog.html">My blog</a></li>
+        <li><a class="burger__link burger__link-profile_js" href="profile.html">My profile</a></li>
+        <li><button class="burger__button burger-signOut_js">Sign out</button></li>
+      </ul>
+
     </div>
 </section>

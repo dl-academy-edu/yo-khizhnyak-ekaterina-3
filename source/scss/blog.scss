@@ -28,9 +28,6 @@
         flex-direction: row;
         flex-wrap: wrap;
         padding-bottom: 20px;
-        @media (max-width: $media-tablet) {
-            gap: 50px;
-        }
     }
     &__items {
         display: flex;
@@ -57,7 +54,11 @@
         padding-left: 137px;
         @media (max-width: $media-tablet) {
             order: 4;
-            padding-left: 31px;
+            padding-left: 81px;
+        }
+        @media (max-width: $media-mobile) {
+            padding-left: 73px;
+            margin-top: 25px;
         }
     }
     &__comments {
@@ -71,11 +72,20 @@
          margin-left: 76px;
         @media (max-width: $media-tablet) {
             order: 3;
+            margin-left: 53px;
+        }
+        @media (max-width: $media-mobile) {
+           margin-left: 0;
+           margin-top: 25px;
         }
     }
     &__tags {
         @media (max-width: $media-tablet) {
+            margin-top: 30px;
             order: 5;
+        }
+        @media (max-width: $media-mobile) {
+            margin-top: 25px;
         }
     }
     &__tags-inner {
@@ -90,13 +100,12 @@
         padding-left: 77px;
         @media (max-width: $media-tablet) {
             order: 2;
-            padding-left: 30px;
+            padding-left: 95px;
         }
         @media (max-width: $media-mobile) {
-            padding-left: 28px;
+            padding-left: 75px;
         }
     }
-    
     &__input {
         position: absolute;
         opacity: 0;
@@ -201,15 +210,19 @@
             flex-wrap: wrap;
             justify-content: end;
         }
+        @media (max-width: $media-mobile) {
+            gap: 20px;
+        }
     }
     &__items-reset {
         margin-left: 52px;
         align-items: center;
         @media (max-width: $media-tablet) {
+            margin-top: 20px;
             order: 6;
         }
         @media (max-width: $media-mobile) {
-            margin-left: 0;
+            margin-left: 34px;
         }
     }
     &__input-last {
@@ -248,6 +261,7 @@
     &__img {
         width: 320px;
         height: 236px;
+        background-color: #e5e5e5;
         @media (max-width: $media-tablet) {
             width: 314px;
             height: 299px;
@@ -260,6 +274,14 @@
     &__wrapper {
         padding: 20px;
         max-width: 640px;
+        @media (max-width: $media-tablet) {
+           max-width: 294px;
+        }
+        @media (max-width: $media-mobile) {
+            max-width: 280px;
+            padding-left: 0;
+            padding-right: 0;
+         }
     }
     &__tags {
         display: flex;
@@ -283,7 +305,7 @@
         font-size: 14px;
         line-height: 16px;
         color: #828282;
-        }
+    }
     &__title {
         font-family: 'Gilroy';
         font-style: normal;
@@ -292,7 +314,7 @@
         line-height: 29px;
         color: #070707;
         margin-bottom: 10px;
-        }
+    }
     &__text {
         font-family: 'Gilroy';
         font-style: normal;
@@ -301,7 +323,7 @@
         line-height: 21px;
         color: #070707;
         margin-bottom: 20px;
-        }
+    }
     &__link {
         font-family: 'Gilroy';
         font-style: normal;
@@ -311,13 +333,17 @@
         text-align: right;
         color: #070707;
         border-bottom: 1px dashed #070707;
-        }
+    }
     &__panel {
         display: flex;
         justify-content: space-between;
         align-items: center;
         padding-top: 30px;
         padding-bottom: 60px;
+        @media (max-width: $media-mobile) {
+            padding-bottom: 40px;
+            padding-top: 10px;
+        }
     }
     &__pagination {
         display: flex;
@@ -420,34 +446,4 @@
     -webkit-transform: rotate(45deg);
     -ms-transform: rotate(45deg);
     transform: rotate(45deg);
-}
-
-
-// Прелоадер
-
-.active {
-    font-weight: bold;
-}
-
-.result {
-    width: 100%;
-    min-height: 400px;
-    justify-content: center;
-    align-items: center;
-}
-
-.full {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: #00000050;
-}
-
-.hidden {
-    display: none;
 }

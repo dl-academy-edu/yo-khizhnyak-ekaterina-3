@@ -66,30 +66,26 @@
         border: 2.5px solid #03BC3C;;
       }
     }
-      &__button {
-        font-family: 'Gilroy', sans-serif;
-        font-style: normal;
-        font-weight: 700;
-        font-size: 18px;
-        line-height: 22px;
-        text-align: center;
+    &__button {
+      font-family: 'Gilroy', sans-serif;
+      font-style: normal;
+      font-weight: 700;
+      font-size: 18px;
+      line-height: 22px;
+      text-align: center;
+      color: #070707;
+      background-color: #ffffff;
+      padding: 8px 17px;
+      border: 2.5px solid #070707;
+      border-radius: 30px;
+      cursor: pointer;
+      transition: 0.4s;
+      &:active {
         color: #070707;
-        background-color: #ffffff;
-        padding: 8px 17px;
         border: 2.5px solid #070707;
-        border-radius: 30px;
-        cursor: pointer;
-        transition: 0.4s;
-        &:active {
-          color: #070707;
-          border: 2.5px solid #070707;
-        }
-        // &:disabled {
-        //   color: #E5E5E5;
-        //   border: 2.5px solid #E5E5E5;
-        // }
       }
     }
+}
 
 .success-feedback {
   color: #03BC3C;

@@ -27,17 +27,16 @@
     <!-- endbuild -->
   </head>
   <body>
-    @@include('blocks/header.html')
+    @@include('blocks/header.html', {
+      "position": ""
+    })
       <main>
-        @@include('blocks/burger-menu.html')
         <section class="profile container">
           <h1 class="profile__title">Ekaterina Khizhnyak</h1>
           <div class="profile__info">
             <p class="profile__text">Future front-end developer</p>
             <p class="profile__text">33 years old, Tolyatti</p>
           </div>
-          <button class="burger__menu profile__menu"></button>
-
           <div class="slider">
             <div class="slider__wrapper">
               <div class="slider__inner-wrapper">
@@ -87,7 +86,6 @@
             </div>
           </div>
 
-
         </section>
         <section class="aboutMe">
           <h2 class="aboutMe__title">About me</h2>
@@ -107,23 +105,23 @@
               <p class="skills__name">HTML 5</p>
               <div class="skills__inner">
                 <p class="skills__level">85%</p>
-                <div class="skills__value"></div>
+                <div style="--width: 85" class="skills__progress"></div>
               </div>
             </li>
             <li class="skills__item">
               <img src="./img/icon/css.svg" alt="CSS/SCSS" width="79" height="90">
               <p class="skills__name">CSS/SCSS</p>
               <div class="skills__inner">
-                <p class="skills__level">55%</p>
-                <div class="skills__value"></div>
+                <p class="skills__level">70%</p>
+                <div style="--width: 70" class="skills__progress"></div>
               </div>
             </li>
             <li class="skills__item">
               <img src="./img/icon/javaScript.svg" alt="JavaScript" width="68" height="90">
               <p class="skills__name">JavaScript</p>
               <div class="skills__inner">
-                <p class="skills__level">5%</p>
-                <div class="skills__value"></div>
+                <p class="skills__level">20%</p>
+                <div style="--width: 20" class="skills__progress"></div>
               </div>
             </li>
             <li class="skills__item">
@@ -131,7 +129,7 @@
               <p class="skills__name">Git/GitHub</p>
               <div class="skills__inner">
                 <p class="skills__level">15%</p>
-                <div class="skills__value"></div>
+                <div style="--width: 15" class="skills__progress"></div>
               </div>
             </li>
             <li class="skills__item">
@@ -139,7 +137,7 @@
               <p class="skills__name">Figma</p>
               <div class="skills__inner">
                 <p class="skills__level">80%</p>
-                <div class="skills__value"></div>
+                <div style="--width: 80" class="skills__progress"></div>
               </div>
             </li>
           </ul>
@@ -198,7 +196,6 @@
             <div class="swiper-button-next"></div>
 
           </div>
-        
 
         </section>
       </main>
@@ -206,28 +203,35 @@
       "color": ""
     })
 
+    @@include('blocks/popup-success.html')
+    @@include('blocks/popup-unsuccess.html')
+
     <div class="popup popup-register_js">
-      <div class="overlay overlay-register_js"></div>
-      <div class="modal__wrap modal__wrap-register_js">
+      <div class="popup__overlay popup__overlay-register_js"></div>
+      <div class="popup__wrap popup__wrap-register_js">
         @@include('blocks/form-register.html')
-        <button class="modal__close modal__close-register_js" type="button"></button>
+        <button class="popup__close popup__close-register_js" type="button"></button>
       </div>
     </div>
 
     <div class="popup popup-sign_js">
-      <div class="overlay overlay-sign_js"></div>
-      <div class="modal__wrap modal__wrap-sign_js">
+      <div class="popup__overlay popup__overlay-sign_js"></div>
+      <div class="popup__wrap popup__wrap-sign_js">
         @@include('blocks/form-sign.html')
-        <button class="modal__close modal__close-sign_js" type="button"></button>
+        <button class="popup__close popup__close-sign_js" type="button"></button>
       </div>
     </div>
 
     <div class="popup popup-send_js">
-      <div class="overlay overlay-send_js"></div>
-      <div class="modal__wrap modal__wrap-send_js">
+      <div class="popup__overlay popup__overlay-send_js"></div>
+      <div class="popup__wrap popup__wrap-send_js">
         @@include('blocks/form-send.html')
-        <button class="modal__close modal__close-send_js" type="button"></button>
+        <button class="popup__close popup__close-send_js" type="button"></button>
       </div>
+    </div>
+
+    <div class="loader__full hidden loader_js">
+      <div class="loader__spinner-border" role="status"></div>
     </div>
 
     <button class="button-to-top button-to-top_hidden button-to-top_js" type="button" aria-label="Вверх"></button>
@@ -235,7 +239,5 @@
     <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
     <script src="./js/common.js"></script>
     <script src="./js/index.js"></script>  
-    <script src="./js/fixed-btn.js"></script>
-    <script src="./js/burger.js"></script>
   </body>
 </html>

@@ -18,7 +18,6 @@
 @import "_blocks/container";
 @import "_blocks/footer";
 @import "_blocks/header";
-@import "_blocks/header-profile";
 @import "fonts";
 @import "profile";
 @import "blog";
@@ -28,6 +27,8 @@
 @import "_blocks/form-password";
 @import "_blocks/form-data";
 @import "_blocks/burger-menu";
+@import "_blocks/popup-success";
+@import "_blocks/popup-unsuccess";
 
 // section Profile
 
@@ -280,7 +281,13 @@
   &__list {
     display: flex;
     flex-wrap: wrap;
-    gap: 46px;
+    gap: 27px;
+    @media (max-width: $media-tablet) {
+      gap: 18px;
+    }
+    @media (max-width: $media-tablet) {
+      gap: 15px;
+    }
   }
   &__item {
     display: flex;
@@ -315,27 +322,28 @@
     line-height: 17px;
     color: #828282;
   }
-  &__value {
-    background-color: #070707;
-    width: 142px;
+  &__progress {
+    background-color: #E5E5E5;
+    width: 140px;
     height: 9px;
     position: relative;
+    @media (max-width: $media-tablet) {
+      width: 111px;
+    }
+    @media (max-width: $media-mobile) {
+      width: 94px;
+    }
     &::after {
       content: '';
       position: absolute;
-      background: linear-gradient(90deg,#070707 15%,#e5e5e5 0);
-      // background-color: #E5E5E5;
-      // width: 21px;
+      background-color: #070707;
+      width: calc(var(--width, 0) * 1%);
       height: 9px;
-      // left: 121px;
-      // width: calc(var(--width, 0) * 1%);
+      left: 0;
+      bottom: 0;
     }
   }
 }
-
-// .skills__progress--html::after {
-//   background: linear-gradient(90deg,#070707 85%,#e5e5e5 0);
-// }
 
 // section Portfolio
 
@@ -407,6 +415,8 @@
   }
 }
 
+// SWIPER
+
 .swiper {
   width: 100%;
   height: 604px;
@@ -437,7 +447,7 @@
   z-index: 11;
 }
 
-.overlay {
+.popup__overlay {
   position: fixed;
   top: 0;
   bottom: 0;
@@ -456,7 +466,7 @@
   display: flex;
 }
 
-.modal__wrap {
+.popup__wrap {
   display: flex;
   flex-direction: row;
   margin: 7% 28%;
@@ -472,7 +482,29 @@
   }
 }
 
-.modal__close {
+.popup__wrap-password {
+  margin: 13% 37%;
+  @media (max-width: $media-tablet) {
+    margin: 30% 28%;
+  }
+  @media (max-width: $media-mobile) {
+    flex-direction: column-reverse;
+    margin: 30% 0%;
+  }
+}
+
+.popup__wrap-data {
+  margin: 13% 30%;
+  @media (max-width: $media-tablet) {
+    margin: 30% 6%;
+  }
+  @media (max-width: $media-mobile) {
+    flex-direction: column-reverse;
+    margin: 30% 0%;
+  }
+}
+
+.popup__close {
   background-image: url('../img/icon/button-close.svg');
   background-repeat: no-repeat;
   background-position: center;
@@ -490,18 +522,60 @@
   }
 }
 
+// Button-to-top
+
 .button-to-top {
+  background-image: url('../img/icon/btn-back.svg');
+  background-repeat: no-repeat;
   position: fixed;
   right: 50px;
   bottom: 50px;
-  height: 100px;
-  width: 100px;
-  border-radius: 100%;
-  background-color: #070707;
+  height: 42px;
+  width: 42px;
+  background-color: transparent;
   border: none;
   cursor: pointer;
+  transform: rotate(90deg);
 }
 
 .button-to-top_hidden {
   display: none;
+}
+
+// Прелоадер
+
+.loader__full{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  background-color: #00000050;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.active {
+  font-weight: bold;
+}
+
+.hidden {
+  display: none;
+}
+
+.loader__spinner-border {
+  margin: 0 auto;
+  border: 8px dashed #FFF;
+  border-radius: 50%;
+  width: 100px;
+  height: 100px;
+  animation: preloader 2s infinite linear;
+}
+
+@keyframes preloader {
+
+  100% {
+    transform: rotate(-360deg);
+  }
 }

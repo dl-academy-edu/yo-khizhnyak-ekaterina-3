@@ -36,6 +36,10 @@
       align-items: flex-end;
       gap: 40px;
     }
+    &__list-sign.hidden, 
+    &__list.hidden {
+      display: none;
+    }
     &__link {
       font-family: 'Gilroy';
       font-style: normal;
@@ -48,6 +52,9 @@
       &:hover, &:focus {
         color: #070707;
       }
+    }
+    &__link.burger__link_active {
+      color: #070707;
     }
     &__button {
       font-family: 'Gilroy';
@@ -75,28 +82,17 @@
     }
   }
   
-  .burger__menu {
+  .header__burger-btn {
     display: none;
     background-image: url('../img/icon/burger-menu.svg');
     background-color: #FFFFFF;
     background-repeat: no-repeat;
     border: none;
+    padding: 0;
     width: 32px;
     height: 20px;
     cursor: pointer;
-      @media (max-width: $media-mobile) {
+      @media (max-width: 375px) {
         display: block;
-        position: absolute;
-        top: 175px;
-        right: 20px;
       }
   }
-
-.profile__menu {
-  @media (max-width: $media-mobile) {
-    display: block;
-    position: absolute;
-    top: 55px;
-    right: 20px;
-  }
-}

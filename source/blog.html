@@ -24,13 +24,13 @@
     <!-- endbuild -->
   </head>
   <body>
-    @@include('blocks/header-profile.html')
+    @@include('blocks/header.html', {
+      "position": "header__burger-other"
+    })
     <main class="container">
-      @@include('blocks/burger-menu.html')
       <section class="filter">
         <div class="filter__burger">
           <h1 class="filter__title">My blog</h1>
-          <button class="burger__menu"></button>
         </div>
         <form name="filterForm">
         <div class="filter__choise">
@@ -112,30 +112,46 @@
           <button class="filter__button filter__button-last">Search</button>
         </div>
       </form>
-          
-
-          <div class="full hidden loader_js">
-            <div class="spinner-border" role="status">
-                <span class="sr-only">Loading...</span>
-            </div>
-          </div>
 
       </section>
 
-  <div class="result result_js"></div> 
-
-  <div class="blog__panel">
-    <button class="blog__button blog__button-back blog__button-back_js" type="button"></button>
-    <div class="blog__pagination blog__pagination_js pagination_js"></div>
-    <button class="blog__button blog__button-next blog__button-next_js" type="button"></button>
-  </div>
+    <div class="result result_js"></div> 
+    <div class="blog__panel">
+      <button class="blog__button blog__button-back blog__button-back_js" type="button"></button>
+      <div class="blog__pagination blog__pagination_js pagination_js"></div>
+      <button class="blog__button blog__button-next blog__button-next_js" type="button"></button>
+    </div>
 
     </main>
     @@include('blocks/footer.html', {
         "color": "footer__grey"
     })
+
+    @@include('blocks/popup-success.html')
+    @@include('blocks/popup-unsuccess.html')
+
+    <div class="popup popup-register_js">
+      <div class="popup__overlay popup__overlay-register_js"></div>
+      <div class="popup__wrap popup__wrap-register_js">
+        @@include('blocks/form-register.html')
+        <button class="popup__close popup__close-register_js" type="button"></button>
+      </div>
+    </div>
+
+    <div class="popup popup-sign_js">
+      <div class="popup__overlay popup__overlay-sign_js"></div>
+      <div class="popup__wrap popup__wrap-sign_js">
+        @@include('blocks/form-sign.html')
+        <button class="popup__close popup__close-sign_js" type="button"></button>
+      </div>
+    </div>
+
+    <div class="loader__full hidden loader_js">
+      <div class="loader__spinner-border" role="status"></div>
+    </div>
+
+    <button class="button-to-top button-to-top_hidden button-to-top_js" type="button" aria-label="Вверх"></button>
+
     <script src="./js/common.js"></script>
     <script src="./js/blog.js"></script>
-    <script src="./js/burger.js"></script>
-    <script src="./js/fixed-btn.js"></script>
   </body>

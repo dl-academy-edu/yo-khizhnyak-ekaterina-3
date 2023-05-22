@@ -1,13 +1,55 @@
-// ОТКРЫТИЕ, ЗАКРЫТИЕ ФОРМ
+// функция выделения текущей страницы как активной
 
-// форма Register
+(function() {
+    const currentPages = document.querySelectorAll('.header__link-home_js');
+    currentPages.forEach(page => {
+        page.classList.add('header__link_active');
+      })
+    const currentBurgerPages = document.querySelectorAll('.burger__link-home_js');
+    currentBurgerPages.forEach(page => {
+        page.classList.add('burger__link_active');
+      })
+})();
 
-(function(){
+// Прелоадер
+
+const loader = document.querySelector('.loader_js');
+
+let loaderCount = 0;
+
+const showLoader = () => {
+  loaderCount++;
+  loader.classList.remove('hidden');
+}
+
+const hideLoader = () => {
+  loaderCount--;
+  if(loaderCount <=0) {
+    loader.classList.add('hidden');
+    loaderCount = 0;
+  }
+}
+
+// ОТКРЫТИЕ, ЗАКРЫТИЕ, ВАЛИДАЦИЯ, ОТПРАВКА ФОРМ
+
+// Работа с формой регистрации.
+
+(function() {
+    const form = document.forms.register;
+    const inputs = [...form.querySelectorAll('input')];
+    const checkboxInput = form.querySelector('.register__checkbox--input');
+    const btnSubmit = form.querySelector('.register__button');
+
     const popup = document.querySelector('.popup-register_js');
+    const loaderReg = document.querySelector('.loader_js');
+    const unsuccessServerMessage  = document.querySelector('.popup-unsuccess_js');
+    const successServerMessage = document.querySelector('.popup-success_js');
+
     const btnOpen = document.querySelector('.register-btn_js');
-    const closePopupBtn = document.querySelector('.modal__close-register_js');
+    const closePopupBtn = document.querySelector('.popup__close-register_js');
     const input = document.querySelector('.register__input--email');
-    const overlay = document.querySelector('.overlay-register_js');
+    const popup__overlay = document.querySelector('.popup__overlay-register_js');
+
     console.log(closePopupBtn)
 
     if ( !popup && !btnOpen ) return;
@@ -21,8 +63,8 @@
         if ( closePopupBtn ) {
             closePopupBtn.addEventListener('click', closePopup );
         }
-        if ( overlay ) {
-            overlay.addEventListener('click', closePopup );
+        if ( popup__overlay ) {
+            popup__overlay.addEventListener('click', closePopup );
         }
     }
 
@@ -31,8 +73,8 @@
         if ( closePopupBtn ) {
             closePopupBtn.removeEventListener('click', closePopup );
         }
-        if ( overlay ) {
-            overlay.removeEventListener('click', closePopup );
+        if ( popup__overlay ) {
+            popup__overlay.removeEventListener('click', closePopup );
         }
         window.removeEventListener('keydown', escHandler);
     }
@@ -43,107 +85,7 @@
         };
     };
 
-})();
-
-// форма Sign in
-
-(function(){
-    const popup = document.querySelector('.popup-sign_js');
-    const btnOpen = document.querySelector('.sign-btn_js');
-    const closePopupBtn = document.querySelector('.modal__close-sign_js');
-    const input = document.querySelector('.sign__input--email');
-    const overlay = document.querySelector('.overlay-sign_js');
-
-    if ( !popup && !btnOpen ) return;
-
-    btnOpen.addEventListener('click', openPopup);
-
-    function openPopup() {
-        popup.classList.add('open');
-        input.focus();
-        window.addEventListener('keydown', escHandler);
-        if ( closePopupBtn ) {
-            closePopupBtn.addEventListener('click', closePopup );
-        }
-        if ( overlay ) {
-            overlay.addEventListener('click', closePopup );
-        }
-    }
-
-    function closePopup() {
-        popup.classList.remove('open');
-        if ( closePopupBtn ) {
-            closePopupBtn.removeEventListener('click', closePopup );
-        }
-        if ( overlay ) {
-            overlay.removeEventListener('click', closePopup );
-        }
-        window.removeEventListener('keydown', escHandler);
-    }
-
-    
-    function escHandler(event) {
-        if(event.keyCode === 27) {
-            closePopup();
-        };
-    };
-
-})();
-
-// форма Send message
-
-(function(){
-    const popup = document.querySelector('.popup-send_js');
-    const btnOpen = document.querySelector('.send-btn_js');
-    const closePopupBtn = document.querySelector('.modal__close-send_js');
-    const input = document.querySelector('.send__input_js');
-    const overlay = document.querySelector('.overlay-send_js');
-
-    if ( !popup && !btnOpen ) return;
-
-    btnOpen.addEventListener('click', openPopup);
-
-    function openPopup() {
-        popup.classList.add('open');
-        input.focus();
-        window.addEventListener('keydown', escHandler);
-        if ( closePopupBtn ) {
-            closePopupBtn.addEventListener('click', closePopup );
-        }
-        if ( overlay ) {
-            overlay.addEventListener('click', closePopup );
-        }
-    }
-
-    function closePopup() {
-        popup.classList.remove('open');
-        if ( closePopupBtn ) {
-            closePopupBtn.removeEventListener('click', closePopup );
-        }
-        if ( overlay ) {
-            overlay.removeEventListener('click', closePopup );
-        }
-        window.removeEventListener('keydown', escHandler);
-    }
-
-    
-    function escHandler(event) {
-        if(event.keyCode === 27) {
-            closePopup();
-        };
-    };
-
-})();
-
-// ВАЛИДАЦИЯ ФОРМ
-
-// Работа с формой регистрации.
-
-(function() {
-    const form = document.forms.register;
-    const inputs = [...form.querySelectorAll('input')];
-    const checkboxInput = form.querySelector('.register__checkbox--input');
-    const btnSubmit = form.querySelector('.register__button');
+    console.log(unsuccessServerMessage);
 
     checkboxInput.addEventListener('click', function() {   
             if ( !checkboxInput.checked ) {
@@ -154,11 +96,8 @@
     form.addEventListener('submit', (e) => {
         e.preventDefault(); // ломаем стандартное поведение события.
 
-        const errorsOldMessages = document.querySelectorAll('.invalid-feedback'); // Смотрим есть ли у нас элементы ошибок
-        for (let error of errorsOldMessages) error.remove(); // Если они есть стираем их для предотвращения эффекта накопления ошибок.
-
-        const successOldMessages = document.querySelectorAll('.success-feedback');
-        for (let success of successOldMessages) success.remove();
+        clearErrors(form);
+        clearSuccess(form);
 
         const userData = getAll(form); // Получаем все данные формы и кладём их в переменную userData.
         console.log(userData);
@@ -200,9 +139,11 @@
                     } else {setSuccessText(input);}
                 }
                 if ( input.name === 'age' ) {
-                    if ( userData.age.length === 0 ) {
+                   if ( !isAgeCorrect(userData.age) ) {
+                            errors.age = 'Your age is not 18!';
+                        } else if ( userData.age.length === 0 ) {
                         errors.age = 'This field is required'; 
-                   } else {setSuccessText(input);}  
+                   } else {setSuccessText(input);} 
                 }           
             }
         })
@@ -227,11 +168,59 @@
             location: userData.location,
             age: +userData.age,
         };
+
         // Якобы отправка данных
         console.log(data);
+
+        loaderReg.classList.remove('hidden');
+
+        sendRequest({
+            url: '/api/users',
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data),
+        })
+        .then(res => {
+            return res.json();
+        })
+        .then(res => {
+            if ( res.success ) {
+                interactionModal(successServerMessage);
+                console.log(`Пользователь с id ${res.data.id} & email ${res.data.email} зарегистрирован!`);
+                interactionModal(popup);
+                form.reset();
+                clearSuccess(form);
+                setTimeout(() => { 
+                    interactionModal(successServerMessage);                 
+                 }, 2000)
+            } else {
+                throw res;
+            }
+        })
+        .catch(err => {
+            if (err.errors) {
+                errorTextFromServer(unsuccessServerMessage, err.errors.email);
+                interactionModal(unsuccessServerMessage);
+            }
+            if (err._message) {
+                errorTextFromServer(unsuccessServerMessage, err._message);
+                interactionModal(unsuccessServerMessage);
+            }
+            setTimeout(() => { 
+                interactionModal(popup); 
+                interactionModal(unsuccessServerMessage);                
+            }, 2000)
+            form.reset();
+            clearErrors(form);
+            clearSuccess(form);
+        })
+        .finally(() => {
+            loaderReg.classList.add('hidden');
+        });
     })
 })();
-
 
 // Работа с формой входа Sign in.
 
@@ -239,13 +228,56 @@
     const form = document.forms.signIn;
     const inputs = [...form.querySelectorAll('input')];
 
+    const popup = document.querySelector('.popup-sign_js');
+    const loaderReg = document.querySelector('.loader_js');
+    const unsuccessServerMessage  = document.querySelector('.popup-unsuccess_js');
+    const successServerMessage = document.querySelector('.popup-success_js');
+
+    const btnOpen = document.querySelector('.sign-btn_js');
+    const closePopupBtn = document.querySelector('.popup__close-sign_js');
+    const input = document.querySelector('.sign__input--email');
+    const popup__overlay = document.querySelector('.popup__overlay-sign_js');
+
+    if ( !popup && !btnOpen ) return;
+
+    btnOpen.addEventListener('click', openPopup);
+
+    function openPopup() {
+        popup.classList.add('open');
+        input.focus();
+        window.addEventListener('keydown', escHandler);
+        if ( closePopupBtn ) {
+            closePopupBtn.addEventListener('click', closePopup );
+        }
+        if ( popup__overlay ) {
+            popup__overlay.addEventListener('click', closePopup );
+        }
+    }
+
+    function closePopup() {
+        popup.classList.remove('open');
+        if ( closePopupBtn ) {
+            closePopupBtn.removeEventListener('click', closePopup );
+        }
+        if ( popup__overlay ) {
+            popup__overlay.removeEventListener('click', closePopup );
+        }
+        window.removeEventListener('keydown', escHandler);
+    }
+
+    function escHandler(event) {
+        if(event.keyCode === 27) {
+            closePopup();
+        };
+    };
+
+    rerenderMenu();
+
     form.addEventListener('submit', (e) => {
         e.preventDefault(); 
 
-        const errorsOldMessages = document.querySelectorAll('.invalid-feedback'); 
-        for (let error of errorsOldMessages) error.remove(); 
-        const successOldMessages = document.querySelectorAll('.success-feedback');
-        for (let success of successOldMessages) success.remove();
+        clearErrors(form);
+        clearSuccess(form);
 
         const userData = getAll(form); 
         console.log(userData);
@@ -284,6 +316,57 @@
         };
 
         console.log(data);
+
+        loaderReg.classList.remove('hidden');
+
+        sendRequest({
+            url: '/api/users/login',
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data),
+        })
+        .then(res => {
+            return res.json();
+        })
+        .then(res => {
+            if ( res.success ) {
+                interactionModal(successServerMessage);
+                localStorage.setItem('token', res.data.token);
+                localStorage.setItem('userId', res.data.userId);
+                rerenderMenu();
+                console.log(`Вы успешно вошли!`);
+                interactionModal(popup);
+                form.reset();
+                clearSuccess(form);
+                setTimeout(() => { 
+                    interactionModal(successServerMessage);                 
+                 }, 2000)
+            } else {
+                throw res;
+            }
+        })
+        .catch(err => {
+            if (err._message) {
+                errorTextFromServer(unsuccessServerMessage, err._message);
+                interactionModal(unsuccessServerMessage);
+            }
+            if (err) {
+                errorTextFromServer(unsuccessServerMessage, 'Неизвестная ошибка сервера');
+                interactionModal(unsuccessServerMessage);
+            }
+            setTimeout(() => { 
+                interactionModal(popup); 
+                interactionModal(unsuccessServerMessage);                
+            }, 2000)
+            form.reset();
+            clearErrors(form);
+            clearSuccess(form);
+        })
+        .finally(() => {
+            loaderReg.classList.add('hidden');
+        });
     })
 })();
 
@@ -294,6 +377,49 @@
     const inputs = [...form.querySelectorAll('input')];
     const checkboxInput = form.querySelector('.send__checkbox--input');
     const btnSubmit = form.querySelector('.send__button');
+
+    const loaderReg = document.querySelector('.loader_js');
+    const popup = document.querySelector('.popup-send_js');
+    const btnOpen = document.querySelector('.send-btn_js');
+    const closePopupBtn = document.querySelector('.popup__close-send_js');
+    const input = document.querySelector('.send__input_js');
+    const popup__overlay = document.querySelector('.popup__overlay-send_js');
+
+    const unsuccessServerMessage  = document.querySelector('.popup-unsuccess_js');
+    const successServerMessage = document.querySelector('.popup-success_js');
+
+    if ( !popup && !btnOpen ) return;
+
+    btnOpen.addEventListener('click', openPopup);
+
+    function openPopup() {
+        popup.classList.add('open');
+        input.focus();
+        window.addEventListener('keydown', escHandler);
+        if ( closePopupBtn ) {
+            closePopupBtn.addEventListener('click', closePopup );
+        }
+        if ( popup__overlay ) {
+            popup__overlay.addEventListener('click', closePopup );
+        }
+    }
+
+    function closePopup() {
+        popup.classList.remove('open');
+        if ( closePopupBtn ) {
+            closePopupBtn.removeEventListener('click', closePopup );
+        }
+        if ( popup__overlay ) {
+            popup__overlay.removeEventListener('click', closePopup );
+        }
+        window.removeEventListener('keydown', escHandler);
+    }
+    
+    function escHandler(event) {
+        if(event.keyCode === 27) {
+            closePopup();
+        };
+    };
 
     if ( !send ) return;
 
@@ -306,11 +432,8 @@
     form.addEventListener('submit', (e) => {
         e.preventDefault(); 
 
-        const errorsOldMessages = document.querySelectorAll('.invalid-feedback'); 
-        for (let error of errorsOldMessages) error.remove(); 
-
-        const successOldMessages = document.querySelectorAll('.success-feedback');
-        for (let success of successOldMessages) success.remove();
+        clearErrors(form);
+        clearSuccess(form);
 
         const userData = getAll(form); 
         console.log(userData);
@@ -355,17 +478,65 @@
         }
 
         const data = {
-            name: userData.name,
-            subject: userData.subjectMessage,
-            email: userData.email,
-            phone: userData.phone,
-            message: userData.message || null,
+              to: userData.email,
+            body: JSON.stringify({
+                name: userData.name,
+                subject: userData.subjectMessage,
+                phone: userData.phone,
+                message: userData.message,
+            })
         };
  
         console.log(data);
+
+        loaderReg.classList.remove('hidden');
+
+        sendRequest({
+            url: '/api/уemails',
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data),
+        })
+        .then(res => {
+            return res.json();
+        })
+        .then(res => {
+            if ( res.success ) {
+                interactionModal(successServerMessage);
+                interactionModal(popup);
+                form.reset();
+                clearSuccess(form);
+                setTimeout(() => { 
+                    interactionModal(successServerMessage);                 
+                 }, 2000)
+            } else {
+                throw res;
+            }
+        })
+        .catch(err => {
+            if (err._message) {
+                errorTextFromServer(unsuccessServerMessage, err._message);
+                interactionModal(unsuccessServerMessage);
+            }
+            if (err) {
+                errorTextFromServer(unsuccessServerMessage, 'Неизвестная ошибка сервера');
+                interactionModal(unsuccessServerMessage);
+            }
+            setTimeout(() => { 
+                interactionModal(popup); 
+                interactionModal(unsuccessServerMessage);                
+            }, 2000)
+            form.reset();
+            clearErrors(form);
+            clearSuccess(form);
+        })
+        .finally(() => {
+            loaderReg.classList.add('hidden');
+        });
     })
 })();
-
 
 // SLIDER
 
@@ -468,9 +639,6 @@
         })
         return dot;
     }
-
-    // setActiveSlide(1);
-
 })();
 
 

@@ -1,3 +1,82 @@
+const BASE_SERVER_PATH = 'https://academy.directlinedev.com';
+
+(function() {
+    const btnSignOut = document.querySelector('.signOut-btn_js');
+    const btnBurgerSignOut = document.querySelector('.burger-signOut_js');
+
+    if (btnSignOut) {
+        btnSignOut.addEventListener('click', () => {
+            localStorage.removeItem('token');
+            rerenderMenu();
+            location.pathname = '/';
+        });
+    }
+    if (btnBurgerSignOut) {
+        btnBurgerSignOut.addEventListener('click', () => {
+            localStorage.removeItem('token');
+            rerenderMenu();
+            location.pathname = '/';
+        });
+    }
+})();
+
+// Функция для работы с модалками - переключение их состояний.
+
+function interactionModal(modal) {
+    modal.classList.toggle('open');
+}
+
+function sendRequest({url, method = 'GET', headers, body = null}) {
+    return fetch(BASE_SERVER_PATH + url, {
+        method,
+        headers,
+        body,
+    })
+}
+
+function clearErrors(element) {
+    const messages = element.querySelectorAll('.invalid-feedback');
+    const invalids = element.querySelectorAll('.is-invalid');
+    messages.forEach(message => message.remove());
+    invalids.forEach(invalid => invalid.classList.remove('is-invalid'));
+}
+
+function clearSuccess(element) {
+    const messagesSuccess = element.querySelectorAll('.success-feedback');
+    const valids = element.querySelectorAll('.is-valid');
+    messagesSuccess.forEach(messagesSuccess => messagesSuccess.remove());
+    valids.forEach(valid => valid.classList.remove('is-valid'));
+}
+
+function rerenderMenu() {
+    const defaultMenu = document.querySelector('.header__list_js');
+    const profileMenu = document.querySelector('.header__list-profile_js');
+    const defaultBurgerMenu = document.querySelector('.burger__list_js');
+    const profileBurgerMenu = document.querySelector('.burger__list-sign_js');
+
+    const isLogin = localStorage.getItem('token');
+
+    if(isLogin) {
+        // Токен присутствует
+        defaultMenu.classList.add('hidden');
+        profileMenu.classList.remove('hidden');
+        defaultBurgerMenu.classList.add('hidden');
+        profileBurgerMenu.classList.remove('hidden');
+    } else {
+        // Токен отсутствует
+        defaultMenu.classList.remove('hidden');
+        profileMenu.classList.add('hidden');
+        defaultBurgerMenu.classList.remove('hidden');
+        profileBurgerMenu.classList.add('hidden');
+    }
+  }
+
+function errorTextFromServer(element, error) {
+    const errorBox = element.querySelector('.popup__message-unsuccess_js');
+    errorBox.innerText = '';
+    errorBox.innerText = `The form was sent but the server transmits an error:'${error}'`;
+}
+
 // ВАЛИДАЦИЯ ФОРМ
 
 // Собираем все данные из формы и возвращаем в качестве единого объекта.
@@ -51,38 +130,17 @@ function isPhoneCorrect(phone) {
     return phone.match(/^(\s*)?(\+)?([- _():=+]?\d[- _():=+]?){10,14}(\s*)?$/);
 };
 
+// Проверка полного имени на правильность, согласно регулярному выражению
+
 function isFullNameCorrect(fullName) {
     return fullName.match(/^[a-zA-Z]{2,}\s[a-zA-Z]{1,}'?-?[a-zA-Z]{2,}\s?([a-zA-Z]{1,})?$/);
 };
 
-// Данная функция является распределительной и выбирает вызывать функцию для работы с итерабельными элементами или нет.
-// function setError(input, messageError) {
-//     if(input[0]) {
-//         // функция при работе с итерабельными элементами
-//         setErrorChecked(input, messageError);
-//     } else {
-//         // функция при работе с обычными элементами
-//         setErrorText(input, messageError);
-//     }
-// }
+// Проверка возраста на правильность, согласно регулярному выражению
 
-// Благодаря этой функции мы делаем ошибку для итерабельных элементов.
-// function setErrorChecked(inputs, messageError) {
-//     const error = errorCreator(messageError); // Получаем div ошибки.
-//     inputs[0].parentElement.parentElement.insertAdjacentElement('afterend', error); // Кладём его в верстку.
-//     function handler() {
-//         error.remove(); // Удаляем ошибку.
-//         for(let input of [...inputs]) { // Перебираем все наши итерабельные инпуты и снимаем с них eventListener'ы и удаляем им классы.
-//             input.removeEventListener('input', handler);
-//             input.classList.remove('is-invalid');
-//         }
-//     }
-//     for(let input of [...inputs]) { // Перебираем наши инпуты и вешаем им классы того, что они неверны и вешаем им слушатель.
-//         input.classList.add('is-invalid');
-
-//         input.addEventListener('input', handler);
-//     }
-// }
+function isAgeCorrect(age) {
+    return (!isNaN(age) && age !== null && age >= 18);
+};
 
 // Эта функция нужна для работы не с итерабельными элементами.
 function setErrorText(input, messageError) { 
@@ -123,3 +181,159 @@ function setSuccessText(input) {
         input.classList.remove('is-valid'); // Удаляем класс об успехе.
     }, {once: true}); // В качестве объекта параметров делаем выполнение этого события одноразовым.
 }
+
+// Кнопка Button-to-top
+
+(function() {
+    const btnToTop = document.querySelector('.button-to-top_js');
+  
+    if ( !btnToTop ) return;
+  
+    window.addEventListener('scroll', () => {
+        const scrollTop = window.scrollY;
+  
+        if ( scrollTop >= 1500 ) {
+            visuallyBtn();
+        } else {
+            notVisuallyBtn();
+        }
+        btnToTop.addEventListener('click', scrollToTop);
+    })
+  
+    function visuallyBtn() {
+        btnToTop.classList.remove('button-to-top_hidden');
+    }
+  
+    function notVisuallyBtn() {
+        btnToTop.classList.add('button-to-top_hidden');
+    }
+  
+    function scrollToTop() {
+        console.log('scroll');
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth',
+        })
+    }
+  })();
+
+// ОТКРЫТИЕ, ЗАКРЫТИЕ БУРГЕР-МЕНЮ
+
+(function() {
+    const burgerBtn = document.querySelector('.header__burger-btn_js');
+    const mobileMenu = document.querySelector('.burger');
+    const closeMenu = document.querySelector('.burger__close');
+
+    if ( !burgerBtn ) return;
+    if ( !mobileMenu ) return;
+
+    burgerBtn.addEventListener('click', openBurger);
+
+    function openBurger() {
+        mobileMenu.classList.add('burger__open');
+        if ( closeMenu ) {
+            closeMenu.addEventListener('click', closeBurger);
+            window.addEventListener('keydown', escHandler);
+        };
+    };
+
+    function escHandler(event) {
+        if(event.keyCode === 27) {
+            closeBurger();
+        };
+    };
+
+    function closeBurger() {
+        mobileMenu.classList.remove('burger__open');
+        window.removeEventListener('keydown', escHandler);
+        closeMenu.removeEventListener('click', closeBurger);
+    };
+
+})();
+
+// форма Sign in
+
+(function() {
+    const popup = document.querySelector('.popup-sign_js');
+    const btnOpen = document.querySelector('.burger-sign_js');
+    const closePopupBtn = document.querySelector('.popup__close-sign_js');
+    const input = document.querySelector('.sign__input--email');
+    const popup__overlay = document.querySelector('.popup__overlay-sign_js');
+
+    if ( !popup && !btnOpen ) return;
+
+    btnOpen.addEventListener('click', openPopup);
+
+    function openPopup() {
+        popup.classList.add('open');
+        input.focus();
+        window.addEventListener('keydown', escHandler);
+        if ( closePopupBtn ) {
+            closePopupBtn.addEventListener('click', closePopup );
+        }
+        if ( popup__overlay ) {
+            popup__overlay.addEventListener('click', closePopup );
+        };
+    };
+
+    function closePopup() {
+        popup.classList.remove('open');
+        if ( closePopupBtn ) {
+            closePopupBtn.removeEventListener('click', closePopup );
+        };
+        if ( popup__overlay ) {
+            popup__overlay.removeEventListener('click', closePopup );
+        };
+        window.removeEventListener('keydown', escHandler);
+    };
+    
+    function escHandler(event) {
+        if(event.keyCode === 27) {
+            closePopup();
+        };
+    };
+
+})();
+
+// форма Register
+
+(function() {
+    const popup = document.querySelector('.popup-register_js');
+    const btnOpen = document.querySelector('.burger-register_js');
+    const closePopupBtn = document.querySelector('.popup__close-register_js');
+    const input = document.querySelector('.register__input--email');
+    const popup__overlay = document.querySelector('.popup__overlay-register_js');
+
+    if ( !popup && !btnOpen ) return;
+
+    btnOpen.addEventListener('click', openPopup);
+
+    function openPopup() {
+        popup.classList.add('open');
+        input.focus();
+        window.addEventListener('keydown', escHandler);
+        if ( closePopupBtn ) {
+            closePopupBtn.addEventListener('click', closePopup );
+        };
+        if ( popup__overlay ) {
+            popup__overlay.addEventListener('click', closePopup );
+        };
+    };
+
+    function closePopup() {
+        popup.classList.remove('open');
+        if ( closePopupBtn ) {
+            closePopupBtn.removeEventListener('click', closePopup );
+        };
+        if ( popup__overlay ) {
+            popup__overlay.removeEventListener('click', closePopup );
+        };
+        window.removeEventListener('keydown', escHandler);
+    };
+    
+    function escHandler(event) {
+        if(event.keyCode === 27) {
+            closePopup();
+        };
+    };
+})();

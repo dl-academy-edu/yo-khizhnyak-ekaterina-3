@@ -2,22 +2,31 @@
     margin-top: 33px; 
     border-bottom: 1px solid #828282;
     padding-bottom: 32px;
-    @media (max-width: $media-mobile) {
-        display: none;
-      }
+    @media (max-width: 375px) {
+       position: absolute;
+       margin-top: 0; 
+       border: none;
+       padding-bottom: 0;
+       width: 32px;
+       height: 20px;
+       top: 175px;
+       right: 20px;
+    }
+    &__burger-other {
+        @media (max-width: 375px) {
+            position: absolute;
+            top: 50px;
+        }
+    }
     &__nav {
         display: flex;
         flex-direction: row;
         justify-content: space-between;
+        @media (max-width: 375px) {
+            display: none;
+        }
     }
     &__link-home {
-        font-family: 'Gilroy';
-        font-style: normal;
-        font-weight: 700;
-        font-size: 18px;
-        line-height: 22px;
-        color: #070707;
-        transition: 0.4s;
         padding-left: 7px;
     }
     &__link {
@@ -30,15 +39,15 @@
         color: #828282;
         transition: 0.4s;
     } 
+    &__link_active {
+        color: #070707;
+    }
     &__list {
         @include no-list;
         display: flex;
         flex-direction: row;
         gap: 20px;
         padding-right: 3px;
-    }
-    &__list-hidden {
-        display: none;
     }
     &__button {
         @include no-btn;
