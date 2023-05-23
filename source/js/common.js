@@ -72,7 +72,7 @@ function rerenderMenu() {
   }
 
 function errorTextFromServer(element, error) {
-    const errorBox = element.querySelector('.popup__message-unsuccess_js');
+    const errorBox = element.querySelector('.modal__message-unsuccess_js');
     errorBox.innerText = '';
     errorBox.innerText = `The form was sent but the server transmits an error:'${error}'`;
 }
@@ -336,4 +336,54 @@ function setSuccessText(input) {
             closePopup();
         };
     };
+})();
+
+(function() {
+    const closedUnsuccessMessageBtn = document.querySelector('.modal__close-unsuccess_js');
+    const unsuccessMessagePopup = document.querySelector('.modal-unsuccess_js');
+    const unsuccessMessageOverlay = document.querySelector('.modal-unsuccess__overlay_js');
+
+    window.addEventListener('keydown', escHandlerUnsuccess);
+    if (closedUnsuccessMessageBtn) {
+        closedUnsuccessMessageBtn.addEventListener('click', closeUnsuccessPopup);
+    }
+    if ( unsuccessMessageOverlay ) {
+        unsuccessMessageOverlay.addEventListener('click', closeUnsuccessPopup );
+    }
+
+    function closeUnsuccessPopup() {
+        unsuccessMessagePopup.classList.remove('open');
+    }
+
+    function escHandlerUnsuccess(event) {
+        if(event.keyCode === 27 && unsuccessMessagePopup.classList.contains('open')) {
+            closeUnsuccessPopup();
+        };
+    };
+
+})();
+
+(function() {
+    const closedSuccessMessageBtn = document.querySelector('.modal__close-success_js');
+    const successMessagePopup = document.querySelector('.modal-success_js');
+    const successMessageOverlay = document.querySelector('.modal-success__overlay_js');
+    
+    window.addEventListener('keydown', escHandlerSuccess);
+    if (closedSuccessMessageBtn) {
+        closedSuccessMessageBtn.addEventListener('click', closeSuccessPopup);
+    }
+    if ( successMessageOverlay ) {
+        successMessageOverlay.addEventListener('click', closeSuccessPopup );
+    }
+
+    function closeSuccessPopup() {
+        successMessagePopup.classList.remove('open');
+    }
+
+    function escHandlerSuccess(event) {
+        if(event.keyCode === 27 && successMessagePopup.classList.contains('open')) {
+            closeSuccessPopup();
+        };
+    };
+
 })();

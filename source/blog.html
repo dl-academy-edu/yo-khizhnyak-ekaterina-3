@@ -117,9 +117,9 @@
 
     <div class="result result_js"></div> 
     <div class="blog__panel">
-      <button class="blog__button blog__button-back blog__button-back_js" type="button"></button>
+      <button class="blog__button blog__button-back blog__button-back_js" type="button" aria-label="back"></button>
       <div class="blog__pagination blog__pagination_js pagination_js"></div>
-      <button class="blog__button blog__button-next blog__button-next_js" type="button"></button>
+      <button class="blog__button blog__button-next blog__button-next_js" type="button" aria-label="next"></button>
     </div>
 
     </main>
@@ -130,11 +130,19 @@
     @@include('blocks/popup-success.html')
     @@include('blocks/popup-unsuccess.html')
 
+    <div class="popup popup-send_js">
+      <div class="popup__overlay popup__overlay-send_js"></div>
+      <div class="popup__wrap popup__wrap-send_js">
+        @@include('blocks/form-send.html')
+        <button class="popup__close popup__close-send_js" type="button" aria-label="close"></button>
+      </div>
+    </div>
+
     <div class="popup popup-register_js">
       <div class="popup__overlay popup__overlay-register_js"></div>
       <div class="popup__wrap popup__wrap-register_js">
         @@include('blocks/form-register.html')
-        <button class="popup__close popup__close-register_js" type="button"></button>
+        <button class="popup__close popup__close-register_js" type="button" aria-label="close"></button>
       </div>
     </div>
 
@@ -142,11 +150,11 @@
       <div class="popup__overlay popup__overlay-sign_js"></div>
       <div class="popup__wrap popup__wrap-sign_js">
         @@include('blocks/form-sign.html')
-        <button class="popup__close popup__close-sign_js" type="button"></button>
+        <button class="popup__close popup__close-sign_js" type="button" aria-label="close"></button>
       </div>
     </div>
 
-    <div class="loader__full hidden loader_js">
+    <div class="loader hidden loader_js">
       <div class="loader__spinner-border" role="status"></div>
     </div>
 

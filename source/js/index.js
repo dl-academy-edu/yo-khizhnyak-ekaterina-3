@@ -42,8 +42,8 @@ const hideLoader = () => {
 
     const popup = document.querySelector('.popup-register_js');
     const loaderReg = document.querySelector('.loader_js');
-    const unsuccessServerMessage  = document.querySelector('.popup-unsuccess_js');
-    const successServerMessage = document.querySelector('.popup-success_js');
+    const unsuccessServerMessage  = document.querySelector('.modal-unsuccess_js');
+    const successServerMessage = document.querySelector('.modal-success_js');
 
     const btnOpen = document.querySelector('.register-btn_js');
     const closePopupBtn = document.querySelector('.popup__close-register_js');
@@ -119,7 +119,7 @@ const hideLoader = () => {
                     } else {setSuccessText(input);}
                 } 
                 if ( input.name === 'password' ) {
-                    if ( userData.password.length < 6 ) {
+                    if ( userData.password.length === 0 ) {
                         errors.password = 'This field is required';
                     } else {setSuccessText(input);}
                 }
@@ -203,13 +203,14 @@ const hideLoader = () => {
             if (err.errors) {
                 errorTextFromServer(unsuccessServerMessage, err.errors.email);
                 interactionModal(unsuccessServerMessage);
+                interactionModal(popup); 
             }
             if (err._message) {
                 errorTextFromServer(unsuccessServerMessage, err._message);
                 interactionModal(unsuccessServerMessage);
+                interactionModal(popup); 
             }
             setTimeout(() => { 
-                interactionModal(popup); 
                 interactionModal(unsuccessServerMessage);                
             }, 2000)
             form.reset();
@@ -230,8 +231,8 @@ const hideLoader = () => {
 
     const popup = document.querySelector('.popup-sign_js');
     const loaderReg = document.querySelector('.loader_js');
-    const unsuccessServerMessage  = document.querySelector('.popup-unsuccess_js');
-    const successServerMessage = document.querySelector('.popup-success_js');
+    const unsuccessServerMessage  = document.querySelector('.modal-unsuccess_js');
+    const successServerMessage = document.querySelector('.modal-success_js');
 
     const btnOpen = document.querySelector('.sign-btn_js');
     const closePopupBtn = document.querySelector('.popup__close-sign_js');
@@ -294,7 +295,7 @@ const hideLoader = () => {
                     } else {setSuccessText(input);}
                 }
                 if ( input.name === 'password' ) {
-                    if ( userData.password.length < 6 ) {
+                    if ( userData.password.length === 0 ) {
                         errors.password = 'This field is required';
                     } else {setSuccessText(input);}
                 }           
@@ -351,13 +352,9 @@ const hideLoader = () => {
             if (err._message) {
                 errorTextFromServer(unsuccessServerMessage, err._message);
                 interactionModal(unsuccessServerMessage);
-            }
-            if (err) {
-                errorTextFromServer(unsuccessServerMessage, 'Неизвестная ошибка сервера');
-                interactionModal(unsuccessServerMessage);
+                interactionModal(popup); 
             }
             setTimeout(() => { 
-                interactionModal(popup); 
                 interactionModal(unsuccessServerMessage);                
             }, 2000)
             form.reset();
@@ -385,8 +382,8 @@ const hideLoader = () => {
     const input = document.querySelector('.send__input_js');
     const popup__overlay = document.querySelector('.popup__overlay-send_js');
 
-    const unsuccessServerMessage  = document.querySelector('.popup-unsuccess_js');
-    const successServerMessage = document.querySelector('.popup-success_js');
+    const unsuccessServerMessage  = document.querySelector('.modal-unsuccess_js');
+    const successServerMessage = document.querySelector('.modal-success_js');
 
     if ( !popup && !btnOpen ) return;
 
@@ -492,7 +489,7 @@ const hideLoader = () => {
         loaderReg.classList.remove('hidden');
 
         sendRequest({
-            url: '/api/уemails',
+            url: '/api/emails',
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -629,6 +626,7 @@ const hideLoader = () => {
     function createDot(index) {
         const dot = document.createElement('button');
         dot.classList.add('slider__dot');
+        dot.setAttribute('aria-label', 'switch slide');
 
         if ( index === activeSlideIndex ) {
             dot.classList.add('slider__dot_active');

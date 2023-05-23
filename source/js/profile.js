@@ -45,8 +45,8 @@ const hideLoader = () => {
     const popup__overlay = document.querySelector('.popup__overlay-data_js');
 
     const loaderReg = document.querySelector('.loader_js');
-    const unsuccessServerMessage  = document.querySelector('.popup-unsuccess_js');
-    const successServerMessage = document.querySelector('.popup-success_js');
+    const unsuccessServerMessage  = document.querySelector('.modal-unsuccess_js');
+    const successServerMessage = document.querySelector('.modal-success_js');
 
     const profileImg = document.querySelector('.profile__img-wrapper_js');
     const profileName = document.querySelector('.profile__name_js');
@@ -186,12 +186,12 @@ const hideLoader = () => {
         .then(res => {
             if (res.success) {           
                 interactionModal(successServerMessage);
-                clearSuccess(form);       
+                clearSuccess(form);   
+                interactionModal(popup);    
                 console.log('Данные успешно изменены');  
                 profile = res.data;
                 renderProfile();
                 setTimeout(() => { 
-                    interactionModal(popup);
                     interactionModal(successServerMessage); 
                 }, 2000)
             } else {
@@ -270,8 +270,8 @@ const hideLoader = () => {
     const popup__overlay = document.querySelector('.popup__overlay-password_js');
 
     const loaderReg = document.querySelector('.loader_js');
-    const unsuccessServerMessage  = document.querySelector('.popup-unsuccess_js');
-    const successServerMessage = document.querySelector('.popup-success_js');
+    const unsuccessServerMessage  = document.querySelector('.modal-unsuccess_js');
+    const successServerMessage = document.querySelector('.modal-success_js');
 
     if ( !popup && !btnOpen ) return;
 
@@ -324,17 +324,17 @@ const hideLoader = () => {
         inputs.forEach(input => {
             if ( input.hasAttribute('required') ) {
                 if ( input.name === 'oldPassword' ) {
-                    if ( userData.oldPassword.length < 6 ) {
+                    if ( userData.oldPassword.length === 0 ) {
                         errors.oldPassword = 'This field is required';
                     } else {setSuccessText(input);}
                 }
                 if ( input.name === 'newPassword' ) {
-                    if ( userData.newPassword.length < 6 ) {
+                    if ( userData.newPassword.length === 0 ) {
                         errors.newPassword = 'This field is required';
                     } else {setSuccessText(input);}
                 }
                 if ( input.name === 'repeatPassword' ) {
-                    if ( userData.repeatPassword !== userData.newPassword || userData.repeatPassword.length === 0 || userData.repeatPassword.length < 6 ) {
+                    if ( userData.repeatPassword !== userData.newPassword || userData.repeatPassword.length === 0 ) {
                         errors.repeatPassword = 'Your password does not match the password you entered!';
                     } else {setSuccessText(input);}
                 }            
@@ -381,10 +381,10 @@ const hideLoader = () => {
             if (res.success) {           
                 interactionModal(successServerMessage);
                 form.reset();
-                clearSuccess(form);       
+                clearSuccess(form); 
+                interactionModal(popup);      
                 console.log('Пароль успешно изменен!');  
                 setTimeout(() => { 
-                    interactionModal(popup);
                     interactionModal(successServerMessage); 
                 }, 2000)
             } else {
@@ -397,10 +397,10 @@ const hideLoader = () => {
                 interactionModal(unsuccessServerMessage);
                 clearSuccess(form);
                 clearErrors(form);
+                interactionModal(popup); 
                 form.reset();
                 setTimeout(() => { 
-                    interactionModal(unsuccessServerMessage);   
-                    interactionModal(popup);            
+                    interactionModal(unsuccessServerMessage);              
                 }, 2000)
             }
         })
@@ -413,8 +413,8 @@ const hideLoader = () => {
 (function() {
     const deleteBtn = document.querySelector('.delete-btn_js');
     const loaderReg = document.querySelector('.loader_js');
-    const unsuccessServerMessage  = document.querySelector('.popup-unsuccess_js');
-    const successServerMessage = document.querySelector('.popup-success_js');
+    const unsuccessServerMessage  = document.querySelector('.modal-unsuccess_js');
+    const successServerMessage = document.querySelector('.modal-success_js');
 
     deleteBtn.addEventListener('click', e => {
         e.preventDefault();

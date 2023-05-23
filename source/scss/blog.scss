@@ -52,37 +52,56 @@
     }
     &__show {
         padding-left: 137px;
-        @media (max-width: $media-tablet) {
+        @media (max-width: 900px) {
             order: 4;
             padding-left: 81px;
         }
-        @media (max-width: $media-mobile) {
+        @media (max-width: 700px) {
             padding-left: 73px;
             margin-top: 25px;
         }
     }
     &__comments {
         margin-left: 74px;
-        @media (max-width: $media-tablet) {
+        @media (max-width: 900px) {
             order: 1;
             margin-left: 0;
         }
     }
     &__sort {
          margin-left: 76px;
-        @media (max-width: $media-tablet) {
+        @media (max-width: 900px) {
             order: 3;
             margin-left: 53px;
         }
-        @media (max-width: $media-mobile) {
+        @media (max-width: 700px) {
            margin-left: 0;
            margin-top: 25px;
         }
+        @media (max-width: 570px) {
+            margin-left: 50px;
+        }
+        @media (max-width: 400px) {
+            margin-left: 0;
+        }
     }
     &__tags {
+        @media (max-width: 900px) {
+            order: 5;
+        }
         @media (max-width: $media-tablet) {
             margin-top: 30px;
             order: 5;
+        }
+        @media (max-width: 700px) {
+            margin-top: 30px;
+            order: 5;
+        }
+        @media (max-width: 570px) {
+            margin-left: 50px;
+        }
+        @media (max-width: 400px) {
+            margin-left: 0;
         }
         @media (max-width: $media-mobile) {
             margin-top: 25px;
@@ -98,11 +117,11 @@
     }
     &__views {
         padding-left: 77px;
-        @media (max-width: $media-tablet) {
+        @media (max-width: 900px) {
             order: 2;
             padding-left: 95px;
         }
-        @media (max-width: $media-mobile) {
+        @media (max-width: 700px) {
             padding-left: 75px;
         }
     }
@@ -217,7 +236,7 @@
     &__items-reset {
         margin-left: 52px;
         align-items: center;
-        @media (max-width: $media-tablet) {
+        @media (max-width: 900px) {
             margin-top: 20px;
             order: 6;
         }
@@ -254,8 +273,9 @@
     margin-bottom: 20px;
     padding-top: 20px;
     border-top: 2px solid #E5E5E5;
-    @media (max-width: $media-mobile) {
+    @media (max-width: 640px) {
         flex-wrap: wrap;
+        justify-content: center;
         margin-bottom: 0;
     }
     &__img {
@@ -274,10 +294,13 @@
     &__wrapper {
         padding: 20px;
         max-width: 640px;
+        @media (max-width: 960px) {
+            max-width: 500px;
+        }
         @media (max-width: $media-tablet) {
            max-width: 294px;
         }
-        @media (max-width: $media-mobile) {
+        @media (max-width: 640px) {
             max-width: 280px;
             padding-left: 0;
             padding-right: 0;

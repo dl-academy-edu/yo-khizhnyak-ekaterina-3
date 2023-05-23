@@ -80,9 +80,9 @@
               </div>
             </div>
             <div class="slider__panel">
-              <button class="slider__button slider__button-back_js"></button>
+              <button class="slider__button slider__button-back_js" aria-label="slider button"></button>
               <div class="slider__pagination slider__pagination_js"></div>
-              <button class="slider__button slider__button-next_js"></button>
+              <button class="slider__button slider__button-next_js" aria-label="slider button"></button>
             </div>
           </div>
 
@@ -155,11 +155,6 @@
                   <source srcset="./img/swiper-slide.jpg, ./img/swiper-slide-2x.jpg 2x" media="(max-width: 1440px)">
                   <img src="./img/swiper-slide.jpg" alt="страница личного проекта">
                 </picture>
-
-                <div class="portfolio__info container">
-                  <a class="portfolio__link" href="">Learning site for DL Academy courses</a>
-                  <p class="portfolio__text">A simple multi-page static site. The design layout was in Figma. HTML and CSS were used. The site is responsive and cross-browser, but without adding interactivity via JavaScript.</p>
-                </div>
               </div>
 
               <div class="swiper-slide">
@@ -169,12 +164,7 @@
                   <source srcset="./img/swiper-slide.jpg, ./img/swiper-slide-2x.jpg 2x" media="(max-width: 1440px)">
                   <img src="./img/swiper-slide.jpg" alt="страница личного проекта">
                 </picture>
-
-                <div class="portfolio__info container">
-                  <a class="portfolio__link" href="">Learning site for DL Academy courses</a>
-                  <p class="portfolio__text">A simple multi-page static site. The design layout was in Figma. HTML and CSS were used. The site is responsive and cross-browser, but without adding interactivity via JavaScript.</p>
-                </div>
-
+        
               </div>
               <div class="swiper-slide">
                 <picture>
@@ -183,19 +173,19 @@
                   <source srcset="./img/swiper-slide.jpg, ./img/swiper-slide-2x.jpg 2x" media="(max-width: 1440px)">
                   <img src="./img/swiper-slide.jpg" alt="страница личного проекта">
                 </picture>
-
-                <div class="portfolio__info container">
-                  <a class="portfolio__link" href="">Learning site for DL Academy courses</a>
-                  <p class="portfolio__text">A simple multi-page static site. The design layout was in Figma. HTML and CSS were used. The site is responsive and cross-browser, but without adding interactivity via JavaScript.</p>
-                </div>
-
               </div>
             </div>
    
             <div class="swiper-button-prev"></div>
             <div class="swiper-button-next"></div>
 
+            <div class="portfolio__info container">
+              <a class="portfolio__link" href="">Learning site for DL Academy courses</a>
+              <p class="portfolio__text">A simple multi-page static site. The design layout was in Figma. HTML and CSS were used. The site is responsive and cross-browser, but without adding interactivity via JavaScript.</p>
+            </div>
+
           </div>
+        </div>
 
         </section>
       </main>
@@ -210,7 +200,7 @@
       <div class="popup__overlay popup__overlay-register_js"></div>
       <div class="popup__wrap popup__wrap-register_js">
         @@include('blocks/form-register.html')
-        <button class="popup__close popup__close-register_js" type="button"></button>
+        <button class="popup__close popup__close-register_js" type="button" aria-label="close"></button>
       </div>
     </div>
 
@@ -218,7 +208,7 @@
       <div class="popup__overlay popup__overlay-sign_js"></div>
       <div class="popup__wrap popup__wrap-sign_js">
         @@include('blocks/form-sign.html')
-        <button class="popup__close popup__close-sign_js" type="button"></button>
+        <button class="popup__close popup__close-sign_js" type="button" aria-label="close"></button>
       </div>
     </div>
 
@@ -226,7 +216,7 @@
       <div class="popup__overlay popup__overlay-send_js"></div>
       <div class="popup__wrap popup__wrap-send_js">
         @@include('blocks/form-send.html')
-        <button class="popup__close popup__close-send_js" type="button"></button>
+        <button class="popup__close popup__close-send_js" type="button" aria-label="close"></button>
       </div>
     </div>
 

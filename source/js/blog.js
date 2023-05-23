@@ -352,8 +352,8 @@ const hideLoader = () => {
 
   const popup = document.querySelector('.popup-register_js');
   const loaderReg = document.querySelector('.loader_js');
-  const unsuccessServerMessage  = document.querySelector('.popup-unsuccess_js');
-  const successServerMessage = document.querySelector('.popup-success_js');
+  const unsuccessServerMessage  = document.querySelector('.modal-unsuccess_js');
+  const successServerMessage = document.querySelector('.modal-success_js');
 
   const btnOpen = document.querySelector('.register-btn_js');
   const closePopupBtn = document.querySelector('.popup__close-register_js');
@@ -429,7 +429,7 @@ const hideLoader = () => {
                   } else {setSuccessText(input);}
               } 
               if ( input.name === 'password' ) {
-                  if ( userData.password.length < 6 ) {
+                  if ( userData.password.length === 0 ) {
                       errors.password = 'This field is required';
                   } else {setSuccessText(input);}
               }
@@ -540,8 +540,8 @@ const hideLoader = () => {
 
   const popup = document.querySelector('.popup-sign_js');
   const loaderReg = document.querySelector('.loader_js');
-  const unsuccessServerMessage  = document.querySelector('.popup-unsuccess_js');
-  const successServerMessage = document.querySelector('.popup-success_js');
+  const unsuccessServerMessage  = document.querySelector('.modal-unsuccess_js');
+  const successServerMessage = document.querySelector('.modal-success_js');
 
   const btnOpen = document.querySelector('.sign-btn_js');
   const closePopupBtn = document.querySelector('.popup__close-sign_js');
@@ -604,7 +604,7 @@ const hideLoader = () => {
                   } else {setSuccessText(input);}
               }
               if ( input.name === 'password' ) {
-                  if ( userData.password.length < 6 ) {
+                  if ( userData.password.length === 0 ) {
                       errors.password = 'This field is required';
                   } else {setSuccessText(input);}
               }           
@@ -647,6 +647,174 @@ const hideLoader = () => {
               localStorage.setItem('userId', res.data.userId);
               rerenderMenu();
               console.log(`Вы успешно вошли!`);
+              interactionModal(popup);
+              form.reset();
+              clearSuccess(form);
+              setTimeout(() => { 
+                  interactionModal(successServerMessage);                 
+               }, 2000)
+          } else {
+              throw res;
+          }
+      })
+      .catch(err => {
+          if (err._message) {
+              errorTextFromServer(unsuccessServerMessage, err._message);
+              interactionModal(unsuccessServerMessage);
+          }
+          if (err) {
+              errorTextFromServer(unsuccessServerMessage, 'Неизвестная ошибка сервера');
+              interactionModal(unsuccessServerMessage);
+          }
+          setTimeout(() => { 
+              interactionModal(popup); 
+              interactionModal(unsuccessServerMessage);                
+          }, 2000)
+          form.reset();
+          clearErrors(form);
+          clearSuccess(form);
+      })
+      .finally(() => {
+          loaderReg.classList.add('hidden');
+      });
+  })
+})();
+
+// Работа с формой отправки сообщений Send message.
+
+(function() {
+  const form = document.forms.send;
+  const inputs = [...form.querySelectorAll('input')];
+  const checkboxInput = form.querySelector('.send__checkbox--input');
+  const btnSubmit = form.querySelector('.send__button');
+
+  const loaderReg = document.querySelector('.loader_js');
+  const popup = document.querySelector('.popup-send_js');
+  const btnOpen = document.querySelector('.send-btn_js');
+  const closePopupBtn = document.querySelector('.popup__close-send_js');
+  const input = document.querySelector('.send__input_js');
+  const popup__overlay = document.querySelector('.popup__overlay-send_js');
+
+  const unsuccessServerMessage  = document.querySelector('.modal-unsuccess_js');
+  const successServerMessage = document.querySelector('.modal-success_js');
+
+  if ( !popup && !btnOpen ) return;
+
+  btnOpen.addEventListener('click', openPopup);
+
+  function openPopup() {
+      popup.classList.add('open');
+      input.focus();
+      window.addEventListener('keydown', escHandler);
+      if ( closePopupBtn ) {
+          closePopupBtn.addEventListener('click', closePopup );
+      }
+      if ( popup__overlay ) {
+          popup__overlay.addEventListener('click', closePopup );
+      }
+  }
+
+  function closePopup() {
+      popup.classList.remove('open');
+      if ( closePopupBtn ) {
+          closePopupBtn.removeEventListener('click', closePopup );
+      }
+      if ( popup__overlay ) {
+          popup__overlay.removeEventListener('click', closePopup );
+      }
+      window.removeEventListener('keydown', escHandler);
+  }
+  
+  function escHandler(event) {
+      if(event.keyCode === 27) {
+          closePopup();
+      };
+  };
+
+  if ( !send ) return;
+
+  checkboxInput.addEventListener('click', function() {   
+          if ( !checkboxInput.checked ) {
+              btnSubmit.setAttribute('disabled', 'disabled');    
+          } else btnSubmit.removeAttribute('disabled');
+  });
+
+  form.addEventListener('submit', (e) => {
+      e.preventDefault(); 
+
+      clearErrors(form);
+      clearSuccess(form);
+
+      const userData = getAll(form); 
+      console.log(userData);
+
+      let errors = {}; 
+
+      console.log(inputs);
+
+      inputs.forEach(input => {
+          if ( input.hasAttribute('required') ) {
+              if ( input.name === 'name') {
+                  if ( !isFullNameCorrect(userData.name) ) {
+                      errors.name = 'Please enter a valid full name';
+                  } else {setSuccessText(input);}
+              }
+              if ( input.name === 'subjectMessage' ) {
+                  if ( userData.subjectMessage.length === 0 ) {
+                      errors.subjectMessage = 'This field is required';
+                  } else {setSuccessText(input);}
+              }
+              if ( input.name === 'email' ) {
+                  if ( !isEmailCorrect(userData.email) ) {
+                      errors.email = 'Please enter a valid email address (your entry is not in the format "somebody@example.com")';
+                  } else {setSuccessText(input);}
+              }
+              if ( input.name === 'phone' ) {
+                  if ( !isPhoneCorrect(userData.phone) ) {
+                      errors.phone = 'Please enter a valid phone number';
+                  } else {setSuccessText(input);}
+              }            
+          }
+      })
+      
+      console.log(errors);
+
+      Object.keys(errors) 
+      if ( Object.keys(errors).length ) {
+          Object.keys(errors).forEach((key) => {
+              setErrorText(form.elements[key], errors[key]); 
+          })
+          return; 
+      }
+
+      const data = {
+            to: userData.email,
+          body: JSON.stringify({
+              name: userData.name,
+              subject: userData.subjectMessage,
+              phone: userData.phone,
+              message: userData.message,
+          })
+      };
+
+      console.log(data);
+
+      loaderReg.classList.remove('hidden');
+
+      sendRequest({
+          url: '/api/emails',
+          method: 'POST',
+          headers: {
+              'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data),
+      })
+      .then(res => {
+          return res.json();
+      })
+      .then(res => {
+          if ( res.success ) {
+              interactionModal(successServerMessage);
               interactionModal(popup);
               form.reset();
               clearSuccess(form);
