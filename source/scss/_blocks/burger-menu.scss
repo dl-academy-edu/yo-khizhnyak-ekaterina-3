@@ -1,0 +1,98 @@
+.burger {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0; 
+    width: 100%;
+    height: auto;
+    z-index: 10;
+    background: rgba(246, 246, 246, 0.99);
+    transition: 0.4s;
+    animation: burger-open linear 1s;
+    &__wrapper{
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      margin-top: 50px;
+      padding-right: 20px;
+      padding-bottom: 262px;
+      gap: 187px;
+    }
+    &__close {
+      background-image: url('../img/icon/close-hover.svg');
+      background-repeat: no-repeat;
+      width: 25px;
+      height: 25px;
+      border: none;
+      cursor: pointer;
+    }
+    &__open {
+      display: block;
+    }
+    &__list {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 40px;
+    }
+    &__list-sign.hidden, 
+    &__list.hidden {
+      display: none;
+    }
+    &__link {
+      font-family: 'Gilroy';
+      font-style: normal;
+      font-weight: 700;
+      font-size: 34px;
+      line-height: 41px;
+      text-align: right;
+      color: #828282;
+      cursor: pointer;
+      &:hover, &:focus {
+        color: #070707;
+      }
+    }
+    &__link.burger__link_active {
+      color: #070707;
+    }
+    &__button {
+      font-family: 'Gilroy';
+      font-style: normal;
+      font-weight: 700;
+      font-size: 34px;
+      line-height: 41px;
+      text-align: right;
+      color: #828282;
+      border: none;
+      background-color: transparent;
+      cursor: pointer;
+      &:hover, &:focus {
+        color: #070707;
+      }
+    }
+  }
+  
+  @keyframes burger-open {
+    0% {
+      transform: translateY(-100%);
+    } 
+    100% {
+      transform: translateY(0);
+    }
+  }
+  
+  .header__burger-btn {
+    display: none;
+    background-image: url('../img/icon/burger-menu.svg');
+    background-color: #FFFFFF;
+    background-repeat: no-repeat;
+    border: none;
+    padding: 0;
+    width: 32px;
+    height: 20px;
+    cursor: pointer;
+      @media (max-width: 375px) {
+        display: block;
+      }
+  }

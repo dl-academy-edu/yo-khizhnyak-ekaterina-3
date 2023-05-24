@@ -17,7 +17,5 @@ console.log(Number(isMarried), String(isMarried), Boolean(isMarried));
 console.log(Number(countOfSisters), String(countOfSisters), Boolean(countOfSisters));
 console.log(Number(dateOfDeath), String(dateOfDeath), Boolean(dateOfDeath));
 console.log(Number(user), String(user), Boolean(user));
-console.log(Number(userId), String(userId), Boolean(userId));
-
-
+// console.log(Number(userId), String(userId), Boolean(userId));
 

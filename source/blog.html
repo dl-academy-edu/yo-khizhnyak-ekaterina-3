@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <meta name="google" content="notranslate">
+    <meta name="format-detection" content="telephone=no">
+
+    <title>DL Academy</title>
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+
+    <script>
+      var docElement = document.documentElement;
+      docElement.className = docElement.className.replace(/\bno-js\b/, '') + ' js';
+    </script>
+
+    <!-- Favicon -->
+
+    <!-- build:css -->
+    <link href="css/style.min.css" rel="stylesheet">
+    <!-- endbuild -->
+  </head>
+  <body>
+    @@include('blocks/header.html', {
+      "position": "header__burger-other"
+    })
+    <main class="container">
+      <section class="filter">
+        <div class="filter__burger">
+          <h1 class="filter__title">My blog</h1>
+        </div>
+        <form name="filterForm">
+        <div class="filter__choise">
+          <div class="filter__items filter__tags">
+            <p class="filter__name">Tags</p>
+            <div class="filter__tags-inner filter__tags-inner_js"></div>
+          </div>
+          <div class="filter__items filter__views">
+            <p class="filter__name">Views</p>
+            <ul class="filter__list">
+              <li>
+                <input class="filter__input" type="radio" name="views" id="100-500" value="100-500">
+                <label class="filter__label" for="100-500">100-500</label>
+              </li>
+              <li>
+                <input class="filter__input" type="radio" name="views" id="500-1000" value="500-1000">
+                <label class="filter__label" for="500-1000">500-1000</label>
+              </li>
+              <li>
+                <input class="filter__input" type="radio" name="views" id="1000-2000" value="1000-2000">
+                <label class="filter__label" for="1000-2000">1000-2000</label>
+              </li>
+            </ul>
+          </div>
+          <div class="filter__items filter__comments">
+            <p class="filter__name">Comments</p>
+            <ul class="filter__list">
+              <li>
+                <input class="filter__comments-input" type="checkbox" name="comments" id="0" value="0-0">
+                <label class="filter__comments-label" for="0">0</label>
+              </li>
+              <li>
+                <input class="filter__comments-input" type="checkbox" name="comments" id="0-1" value="0-1">
+                <label class="filter__comments-label" for="0-1">0-1</label>
+              </li>
+              <li>
+                <input class="filter__comments-input" type="checkbox" name="comments" id="1-50" value="1-50">
+                <label class="filter__comments-label" for="1-50">1-50</label>
+              </li>
+            </ul>
+          </div>
+          <div class="filter__items filter__show">
+            <p class="filter__name">How show?</p>
+            <ul class="filter__list">
+              <li>
+                <input class="filter__input" type="radio" name="show" id="show5" value="5">
+                <label class="filter__label" for="show5">show 5</label>
+              </li>
+              <li>
+                <input class="filter__input" type="radio" name="show" id="show10" value="10">
+                <label class="filter__label" for="show10">show 10</label>
+              </li>
+            </ul>
+          </div>
+          <div class="filter__items filter__sort">
+            <p class="filter__name">Sort by</p>
+            <ul class="filter__list">
+              <li>
+                <input class="filter__input" type="radio" name="sort" id="date" value="date">
+                <label class="filter__label" for="date">date</label>
+              </li>
+              <li>
+                <input class="filter__input" type="radio" name="sort" id="title" value="title">
+                <label class="filter__label" for="title">title</label>
+              </li>
+              <li>
+                <input class="filter__input" type="radio" name="sort" id="views" value="views">
+                <label class="filter__label" for="views">views</label>
+              </li>
+            </ul>
+          </div>
+          <div class="filter__items filter__items-reset">
+            <p class="filter__reset">reset form</p>
+            <button class="filter__button filter__reset-btn_js" type="reset">Reset</button>
+          </div>
+        </div>
+        <div class="filter__items-last">
+          <input class="filter__input-last" type="text" name="name">
+          <button class="filter__button filter__button-last">Search</button>
+        </div>
+      </form>
+
+      </section>
+
+    <div class="result result_js"></div> 
+    <div class="blog__panel">
+      <button class="blog__button blog__button-back blog__button-back_js" type="button" aria-label="back"></button>
+      <div class="blog__pagination blog__pagination_js pagination_js"></div>
+      <button class="blog__button blog__button-next blog__button-next_js" type="button" aria-label="next"></button>
+    </div>
+
+    </main>
+    @@include('blocks/footer.html', {
+        "color": "footer__grey"
+    })
+
+    @@include('blocks/popup-success.html')
+    @@include('blocks/popup-unsuccess.html')
+
+    <div class="popup popup-send_js">
+      <div class="popup__overlay popup__overlay-send_js"></div>
+      <div class="popup__wrap popup__wrap-send_js">
+        @@include('blocks/form-send.html')
+        <button class="popup__close popup__close-send_js" type="button" aria-label="close"></button>
+      </div>
+    </div>
+
+    <div class="popup popup-register_js">
+      <div class="popup__overlay popup__overlay-register_js"></div>
+      <div class="popup__wrap popup__wrap-register_js">
+        @@include('blocks/form-register.html')
+        <button class="popup__close popup__close-register_js" type="button" aria-label="close"></button>
+      </div>
+    </div>
+
+    <div class="popup popup-sign_js">
+      <div class="popup__overlay popup__overlay-sign_js"></div>
+      <div class="popup__wrap popup__wrap-sign_js">
+        @@include('blocks/form-sign.html')
+        <button class="popup__close popup__close-sign_js" type="button" aria-label="close"></button>
+      </div>
+    </div>
+
+    <div class="loader hidden loader_js">
+      <div class="loader__spinner-border" role="status"></div>
+    </div>
+
+    <button class="button-to-top button-to-top_hidden button-to-top_js" type="button" aria-label="Вверх"></button>
+
+    <script src="./js/common.js"></script>
+    <script src="./js/blog.js"></script>
+  </body>

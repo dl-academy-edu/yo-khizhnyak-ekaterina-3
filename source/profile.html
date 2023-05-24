@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <meta name="google" content="notranslate">
+    <meta name="format-detection" content="telephone=no">
+
+    <title>DL Academy</title>
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+
+    <script>
+      var docElement = document.documentElement;
+      docElement.className = docElement.className.replace(/\bno-js\b/, '') + ' js';
+    </script>
+
+    <!-- Favicon -->
+
+    <!-- build:css -->
+    <link href="css/style.min.css" rel="stylesheet">
+    <!-- endbuild -->
+  </head>
+  <body>
+    @@include('blocks/header.html', {
+      "position": "header__burger-other"
+    })
+    <main>      
+      <section class="myProfile container">
+        <div class="myProfile__main">
+          <h1 class="myProfile__title">My profile</h1>
+          <div class="myProfile__img-wrapper profile__img-wrapper_js"></div>
+        </div>
+        <div class="myProfile__list">
+          <p class="myProfile__item ">Name: <span class="myProfile__data profile__name_js"></span></p>
+          <p class="myProfile__item ">Surname: <span class="myProfile__data profile__surname_js"></span></p>
+          <p class="myProfile__item ">Email: <span class="myProfile__data profile__email_js"></span></p>
+          <p class="myProfile__item ">Password: <span class="profile__password_js">**********</span></p>
+          <p class="myProfile__item ">Location: <span class="myProfile__data profile__location_js"></span></p>
+          <p class="myProfile__item ">Age: <span class="myProfile__data profile__age_js"></span></p>
+          <ul>
+            <li><button class="myProfile__button password-btn_js" type="submit">Change password</button></li>
+            <li><button class="myProfile__button data-btn_js" type="submit">Change other data</button></li>
+            <li><button class="myProfile__button delete-btn_js" type="submit">Delete account</button></li>
+          </ul>
+        </div>
+      </section>
+    </main>
+
+    @@include('blocks/popup-success.html')
+    @@include('blocks/popup-unsuccess.html')
+
+    <div class="popup popup-password_js">
+      <div class="popup__overlay popup__overlay-password_js"></div>
+      <div class="popup__wrap popup__wrap-password popup__wrap-password_js">
+        @@include('blocks/form-password.html')
+        <button class="popup__close popup__close-password_js" type="button" aria-label="close"></button>
+      </div>
+    </div>
+
+    <div class="popup popup-data_js">
+      <div class="popup__overlay popup__overlay-data_js"></div>
+      <div class="popup__wrap popup__wrap-data popup__wrap-data_js">
+        @@include('blocks/form-data.html')
+        <button class="popup__close popup__close-data_js" type="button" aria-label="close"></button>
+      </div>
+    </div>
+
+    <div class="loader hidden loader_js">
+      <div class="loader__spinner-border" role="status">
+      </div>
+    </div>
+
+    <button class="button-to-top button-to-top_hidden button-to-top_js" type="button" aria-label="Вверх"></button>
+
+    <script src="./js/common.js"></script>
+    <script src="./js/profile.js"></script>
+    </body>

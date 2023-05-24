@@ -10,6 +10,8 @@
     <meta name="description" content="">
     <meta name="keywords" content="">
 
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css"/>
+
     <script>
       var docElement = document.documentElement;
       docElement.className = docElement.className.replace(/\bno-js\b/, '') + ' js';
@@ -18,14 +20,214 @@
     <!-- Favicon -->
 
     <!-- build:css -->
+
+ 
+
     <link href="css/style.min.css" rel="stylesheet">
     <!-- endbuild -->
   </head>
   <body>
-    @@include('blocks/header.html')
+    @@include('blocks/header.html', {
+      "position": ""
+    })
       <main>
+        <section class="profile container">
+          <h1 class="profile__title">Ekaterina Khizhnyak</h1>
+          <div class="profile__info">
+            <p class="profile__text">Future front-end developer</p>
+            <p class="profile__text">33 years old, Tolyatti</p>
+          </div>
+          <div class="slider">
+            <div class="slider__wrapper">
+              <div class="slider__inner-wrapper">
+
+                <div class="slider__slide">
+                  <picture>
+                    <source srcset="./img/slide-mobile.jpg, ./img/slide-mobile-2x.jpg 2x" media="(max-width: 320px)">
+                    <source srcset="./img/slide-tablet.jpg, ./img/slide-tablet-2x.jpg 2x" media="(max-width: 768px)">
+                    <source srcset="./img/slide.jpg, ./img/slide-2x.jpg 2x" media="(max-width: 1440px)">
+                    <img src="./img/slide.jpg" alt="фото">
+                  </picture>
+                </div>
+
+                <div class="slider__slide">
+                  <picture>
+                    <source srcset="./img/slide-mobile.jpg, ./img/slide-mobile-2x.jpg 2x" media="(max-width: 320px)">
+                    <source srcset="./img/slide-tablet.jpg, ./img/slide-tablet-2x.jpg 2x" media="(max-width: 768px)">
+                    <source srcset="./img/slide.jpg, ./img/slide-2x.jpg 2x" media="(max-width: 1440px)">
+                    <img src="./img/slide.jpg" alt="фото">
+                  </picture>
+                </div>
+
+                <div class="slider__slide">
+                  <picture>
+                    <source srcset="./img/slide-mobile.jpg, ./img/slide-mobile-2x.jpg 2x" media="(max-width: 320px)">
+                    <source srcset="./img/slide-tablet.jpg, ./img/slide-tablet-2x.jpg 2x" media="(max-width: 768px)">
+                    <source srcset="./img/slide.jpg, ./img/slide-2x.jpg 2x" media="(max-width: 1440px)">
+                    <img src="./img/slide.jpg" alt="фото">
+                  </picture>
+                </div>
+
+                <div class="slider__slide">
+                  <picture>
+                    <source srcset="./img/slide-mobile.jpg, ./img/slide-mobile-2x.jpg 2x" media="(max-width: 320px)">
+                    <source srcset="./img/slide-tablet.jpg, ./img/slide-tablet-2x.jpg 2x" media="(max-width: 768px)">
+                    <source srcset="./img/slide.jpg, ./img/slide-2x.jpg 2x" media="(max-width: 1440px)">
+                    <img src="./img/slide.jpg" alt="фото">
+                  </picture>
+                </div>
+
+              </div>
+            </div>
+            <div class="slider__panel">
+              <button class="slider__button slider__button-back_js" aria-label="slider button"></button>
+              <div class="slider__pagination slider__pagination_js"></div>
+              <button class="slider__button slider__button-next_js" aria-label="slider button"></button>
+            </div>
+          </div>
+
+        </section>
+        <section class="aboutMe">
+          <h2 class="aboutMe__title">About me</h2>
+          <div class="aboutMe__inner">
+            <p class="aboutMe__text">Aliquam tortor molestie turpis est tristique. Congue diam orci amet quis semper ut. Vitae aenean nibh facilisis urna, ultricies euismod nunc. Commodo fringilla sit hendrerit consequat. Vel ac elit vel sagittis.</p>
+            <p class="aboutMe__text">Tincidunt id quis pellentesque rutrum pretium. Egestas aliquam dictum ipsum nisl, sed pulvinar. Commodo elit sed a fermentum non justo. Etiam platea consectetur.</p>
+            <p class="aboutMe__text">Quam ipsum odio tellus etiam aliquam dolor ut hendrerit. Felis risus nec vitae nunc ultricies placerat. Nullam nec felis eu id dolor pellentesque tristique. </p>
+          </div>
+        </section>
+
+        <section class="skills container">
+          <h2 class="skills__title">Skills</h2>
+          <p class="skills__text">I work in such programs as</p>
+          <ul class="skills__list">
+            <li class="skills__item">
+              <img src="./img/icon/html.svg" alt="HTML 5" width="79" height="90">
+              <p class="skills__name">HTML 5</p>
+              <div class="skills__inner">
+                <p class="skills__level">85%</p>
+                <div style="--width: 85" class="skills__progress"></div>
+              </div>
+            </li>
+            <li class="skills__item">
+              <img src="./img/icon/css.svg" alt="CSS/SCSS" width="79" height="90">
+              <p class="skills__name">CSS/SCSS</p>
+              <div class="skills__inner">
+                <p class="skills__level">70%</p>
+                <div style="--width: 70" class="skills__progress"></div>
+              </div>
+            </li>
+            <li class="skills__item">
+              <img src="./img/icon/javaScript.svg" alt="JavaScript" width="68" height="90">
+              <p class="skills__name">JavaScript</p>
+              <div class="skills__inner">
+                <p class="skills__level">20%</p>
+                <div style="--width: 20" class="skills__progress"></div>
+              </div>
+            </li>
+            <li class="skills__item">
+              <img src="./img/icon/gitHub.svg" alt="Git/GitHub" width="90" height="90">
+              <p class="skills__name">Git/GitHub</p>
+              <div class="skills__inner">
+                <p class="skills__level">15%</p>
+                <div style="--width: 15" class="skills__progress"></div>
+              </div>
+            </li>
+            <li class="skills__item">
+              <img src="./img/icon/figma.svg" alt="Figma" width="60" height="90">
+              <p class="skills__name">Figma</p>
+              <div class="skills__inner">
+                <p class="skills__level">80%</p>
+                <div style="--width: 80" class="skills__progress"></div>
+              </div>
+            </li>
+          </ul>
+        </section>
+
+        <section class="portfolio">
+          <h2 class="portfolio__title">Portfolio</h2>
+
+          <div class="swiper container">
+            <div class="swiper-wrapper">
+              <div class="swiper-slide">
+                <picture>
+                  <source srcset="./img/swiper-slide-mobile.jpg, ./img/swiper-slide-mobile-2x.jpg 2x" media="(max-width: 520px)">
+                  <source srcset="./img/swiper-slide-tablet.jpg, ./img/swiper-slide-tablet-2x.jpg 2x" media="(max-width: 960px)">
+                  <source srcset="./img/swiper-slide.jpg, ./img/swiper-slide-2x.jpg 2x" media="(max-width: 1440px)">
+                  <img src="./img/swiper-slide.jpg" alt="страница личного проекта">
+                </picture>
+              </div>
+
+              <div class="swiper-slide">
+                <picture>
+                  <source srcset="./img/swiper-slide-mobile.jpg, ./img/swiper-slide-mobile-2x.jpg 2x" media="(max-width: 520px)">
+                  <source srcset="./img/swiper-slide-tablet.jpg, ./img/swiper-slide-tablet-2x.jpg 2x" media="(max-width: 960px)">
+                  <source srcset="./img/swiper-slide.jpg, ./img/swiper-slide-2x.jpg 2x" media="(max-width: 1440px)">
+                  <img src="./img/swiper-slide.jpg" alt="страница личного проекта">
+                </picture>
+        
+              </div>
+              <div class="swiper-slide">
+                <picture>
+                  <source srcset="./img/swiper-slide-mobile.jpg, ./img/swiper-slide-mobile-2x.jpg 2x" media="(max-width: 520px)">
+                  <source srcset="./img/swiper-slide-tablet.jpg, ./img/swiper-slide-tablet-2x.jpg 2x" media="(max-width: 960px)">
+                  <source srcset="./img/swiper-slide.jpg, ./img/swiper-slide-2x.jpg 2x" media="(max-width: 1440px)">
+                  <img src="./img/swiper-slide.jpg" alt="страница личного проекта">
+                </picture>
+              </div>
+            </div>
+   
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-button-next"></div>
+
+            <div class="portfolio__info container">
+              <a class="portfolio__link" href="">Learning site for DL Academy courses</a>
+              <p class="portfolio__text">A simple multi-page static site. The design layout was in Figma. HTML and CSS were used. The site is responsive and cross-browser, but without adding interactivity via JavaScript.</p>
+            </div>
+
+          </div>
+        </div>
+
+        </section>
       </main>
-      @@include('blocks/footer.html')
-    <script src="js/app.js" defer></script>
+    @@include('blocks/footer.html', {
+      "color": ""
+    })
+
+    @@include('blocks/popup-success.html')
+    @@include('blocks/popup-unsuccess.html')
+
+    <div class="popup popup-register_js">
+      <div class="popup__overlay popup__overlay-register_js"></div>
+      <div class="popup__wrap popup__wrap-register_js">
+        @@include('blocks/form-register.html')
+        <button class="popup__close popup__close-register_js" type="button" aria-label="close"></button>
+      </div>
+    </div>
+
+    <div class="popup popup-sign_js">
+      <div class="popup__overlay popup__overlay-sign_js"></div>
+      <div class="popup__wrap popup__wrap-sign_js">
+        @@include('blocks/form-sign.html')
+        <button class="popup__close popup__close-sign_js" type="button" aria-label="close"></button>
+      </div>
+    </div>
+
+    <div class="popup popup-send_js">
+      <div class="popup__overlay popup__overlay-send_js"></div>
+      <div class="popup__wrap popup__wrap-send_js">
+        @@include('blocks/form-send.html')
+        <button class="popup__close popup__close-send_js" type="button" aria-label="close"></button>
+      </div>
+    </div>
+
+    <div class="loader__full hidden loader_js">
+      <div class="loader__spinner-border" role="status"></div>
+    </div>
+
+    <button class="button-to-top button-to-top_hidden button-to-top_js" type="button" aria-label="Вверх"></button>
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+    <script src="./js/common.js"></script>
+    <script src="./js/index.js"></script>  
   </body>
 </html>
