@@ -33,8 +33,8 @@ const hideLoader = () => {
 (function() {
     const form = document.forms.filterForm;
     const resetBtn = form.querySelector('.filter__reset-btn_js');
-    const backBtn = document.querySelector('.blog__button-back_js');
-    const nextBtn = document.querySelector('.blog__button-next_js');
+    const backBtn = document.querySelector('.panel__button-back_js');
+    const nextBtn = document.querySelector('.panel__button-next_js');
     const defaultLimit = 5; 
 
     form.addEventListener('submit', (e) => {
@@ -213,7 +213,7 @@ const hideLoader = () => {
           title: post.title,
           text: post.text,
           comments: post.commentsCount,
-          date: typeOfDate(post.date),  // вызвать функцию, в нее передать post.date
+          date: typeOfDate(post.date),  
           views: post.views, 
           photo: post.photo, 
           tags: post.tags
@@ -248,7 +248,7 @@ const hideLoader = () => {
     link.href = '?page=' + page;
     link.innerText = `${page + 1}`;
     link.classList.add('link_js');
-    link.classList.add('blog__pagination-link');
+    link.classList.add('panel__pagination-link');
 
     let params = getParamsFromLocation();
     if (page === +params.page) {

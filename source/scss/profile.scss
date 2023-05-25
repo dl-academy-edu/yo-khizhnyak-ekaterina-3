@@ -6,9 +6,12 @@
     @media (max-width: $media-tablet) {
         gap: 76px;
     }
-    @media (max-width: $media-mobile) {
-        gap: 40px;
+    @media (max-width: 630px) {
+        gap: 20px;
         flex-wrap: wrap;
+    }
+    @media (max-width: 575px) {
+        gap: 40px;
     }
     &__main {
         display: flex;
@@ -46,14 +49,14 @@
     }
     &__img {
         max-width: 100%;
-        height: 450px;
+        height: 450px; 
     }
     &__list {
         display: flex;
         flex-direction: column;
         gap: 20px;
         padding-top: 97px;
-        @media (max-width: $media-mobile) {
+        @media (max-width: 575px) {
             padding-top: 0;
         }
     }
